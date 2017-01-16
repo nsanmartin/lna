@@ -3,13 +3,13 @@
 // digit_print
 /* void pr_num (lnn_t * n, void * p) */
 /* { */
-/*     PRINT_NODO_HEX( n -> num); */
+/*     PRINT_DIGIT_HEX( n -> num); */
 /* } */
 
 // digit_print_hex
 void lnn_print_digit_hex (lnn_t * n, void * p)
 {
-    PRINT_NODO_HEX( n -> num);
+    PRINT_DIGIT_HEX( n -> num);
 }
 
 

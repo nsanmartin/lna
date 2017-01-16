@@ -3,4 +3,4 @@
 *#
 *.out
 *.exe
-temp
+.temp

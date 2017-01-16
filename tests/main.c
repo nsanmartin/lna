@@ -19,7 +19,8 @@ int main()
         {
             T x = atoll(input_x);
 	    lnn_t * n = lnn_new_T (x);
-	    lnn_print_hex (n );
+	    lnn_print_hex ( n );
+	    endl;
         }
     }
     return 0;

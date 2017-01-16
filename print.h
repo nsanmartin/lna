@@ -13,19 +13,8 @@
 #define UNSIGNED_PATTERN "%08d "
 #define CHAR_PATTERN "%02d "
 
-//void pr_num (lnn_t * n, void * p) ;//void pr_num (lnn_t * n, void * p) ;
 
 void lnn_print_digit_hex (lnn_t * n, void * p);
-//void pr_num_hex (lnn_t * n, void * p);
-
-//void prn0 (char * s, lnn_t * n);
-
 void lnn_print_hex(lnn_t * n);
-//void prhex(lnn_t * n);
-
 void lnn_print_bin(T x);
-//void prbin(T x);
-
-
-//void showHex ( lnn_t * n);
 #endif

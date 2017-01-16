@@ -14,7 +14,6 @@ struct lnn_t {
     lnn_t * next;
 };
 void lnn_init (lnn_t * n); 
-void lnn_clear(); 
 void lnn_digit_clrear();
 
 lnn_t * lnn_new_zero();
@@ -29,6 +28,8 @@ T lnn_last_digit(lnn_t *n);
 
 void lnn_dolist(lnn_t **head, void (*f)(lnn_t *, void *), void * res);
 void lnn_map (lnn_t **head, lnn_t * (*f)(lnn_t *), void * res);
+
+void lnn_digit_clear( lnn_t * n, void * p); 
 void lnn_clear(lnn_t ** lista );
 
 
