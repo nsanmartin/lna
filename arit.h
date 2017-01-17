@@ -11,7 +11,7 @@ lnn_t * lnn_mul_T (lnn_t * n, T x);
 lnn_t * lnn_mul (lnn_t * x, lnn_t * y);
 lnn_t * lnn_pow (lnn_t * x, lnn_t * y);
 
-lnn_t * lnn_factorial_T (lnn_t * n);
+lnn_t * lnn_factorial_T (T n);
 
 
 #endif

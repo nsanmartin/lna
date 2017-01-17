@@ -146,10 +146,11 @@ lnn_t * lnn_mul_T (lnn_t * n, T x)
 
 
 
-lnn_t * lnn_factorial_T (lnn_t * n)
+lnn_t * lnn_factorial_T (T n)
 {
-    T factor = n -> num - 1;
-    lnn_t * res = lnn_copy ( n );
+    lnn_t * res = lnn_new_T( n );
+    T factor = n - 1;
+    //lnn_t * res = lnn_copy ( n );
     while ( factor > 1 )
     {
 	lnn_t * tmp = lnn_mul_T ( res, factor );

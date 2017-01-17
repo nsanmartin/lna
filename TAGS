@@ -1,0 +1,178 @@
+
+primes.h,33
+#define _PRIMES_H_PRIMES_H2,18
+
+arit.h,29
+#define _ARIT_H_ARIT_H2,16
+
+print.h,320
+#define _PRINT_H_PRINT_H2,17
+#define LONG_HEX_PATTERN LONG_HEX_PATTERN8,96
+#define CHAR_HEX_PATTERN CHAR_HEX_PATTERN9,131
+#define UNSIGNED_HEX_PATTERN UNSIGNED_HEX_PATTERN10,163
+#define LONG_PATTERN LONG_PATTERN12,200
+#define UNSIGNED_PATTERN UNSIGNED_PATTERN13,232
+#define CHAR_PATTERN CHAR_PATTERN14,265
+
+read.h,29
+#define _READ_H_READ_H2,16
+
+primes.c,59
+lnn_t * ln_primes_factors_T (T x)ln_primes_factors_T3,21
+
+basetype.h,643
+#define _BASE_TYPE_H_BASE_TYPE_H2,21
+#define LENGTH(LENGTH4,43
+#define endl endl5,84
+typedef unsigned T;T18,358
+#define PRINT_DIGIT(PRINT_DIGIT19,378
+#define PRINT_DIGIT_HEX(PRINT_DIGIT_HEX20,436
+#define PATTERN PATTERN21,503
+#define hexPATTERN hexPATTERN22,524
+#define FORMAT FORMAT23,548
+#define hexFORMAT hexFORMAT24,568
+typedef unsigned long long T;T28,600
+#define PRINT_DIGIT(PRINT_DIGIT29,630
+#define PRINT_DIGIT_HEX(PRINT_DIGIT_HEX30,684
+#define PATTERN PATTERN31,746
+#define hexPATTERN hexPATTERN32,769
+#define FORMAT FORMAT33,795
+#define hexFORMAT hexFORMAT34,817
+#define BITS_OF_T BITS_OF_T39,853
+
+digit.h,192
+#define _LNN_T_H_LNN_T_H2,17
+#define MUL_OVERFLOW(MUL_OVERFLOW7,78
+typedef struct lnn_t lnn_t;lnn_t10,167
+struct lnn_t {lnn_t12,196
+    T num;num13,211
+    lnn_t * next;next14,222
+
+.temp/factorial.py,26
+def main(argv):main6,58
+
+.temp/arit.h,29
+#define _ARIT_H_ARIT_H2,16
+
+.temp/print.h,320
+#define _PRINT_H_PRINT_H2,17
+#define LONG_HEX_PATTERN LONG_HEX_PATTERN8,96
+#define CHAR_HEX_PATTERN CHAR_HEX_PATTERN9,131
+#define UNSIGNED_HEX_PATTERN UNSIGNED_HEX_PATTERN10,163
+#define LONG_PATTERN LONG_PATTERN12,200
+#define UNSIGNED_PATTERN UNSIGNED_PATTERN13,232
+#define CHAR_PATTERN CHAR_PATTERN14,265
+
+.temp/read.h,29
+#define _READ_H_READ_H2,16
+
+.temp/digit.h,192
+#define _LNN_T_H_LNN_T_H2,17
+#define MUL_OVERFLOW(MUL_OVERFLOW7,78
+typedef struct lnn_t lnn_t;lnn_t10,167
+struct lnn_t {lnn_t14,230
+    T num;num15,245
+    lnn_t * next;next16,256
+
+.temp/arit.c,586
+void lnn_incr (lnn_t * n)lnn_incr7,63
+void lnn_decr (lnn_t * n)lnn_decr25,351
+void lnn_set_add_T (lnn_t * n, T x)lnn_set_add_T41,587
+void lnn_set_add (lnn_t * n, lnn_t * x)lnn_set_add52,803
+lnn_t * lnn_digit_mul_T (lnn_t * n, T x)lnn_digit_mul_T69,1124
+lnn_t * lnn_mul_T (lnn_t * n, T x)lnn_mul_T96,1728
+lnn_t * lnn_factorial_T (lnn_t * n)lnn_factorial_T149,3005
+lnn_t * lnn_mul (lnn_t * x, lnn_t * y)lnn_mul164,3249
+lnn_t * lnn_pow (lnn_t * x, lnn_t * y)lnn_pow182,3642
+int menor (lnn_t * x, lnn_t * y)menor196,3944
+int es_positivo (lnn_t * n)es_positivo206,4180
+
+.temp/digit.c,873
+lnn_t * lnn_new_zero ()lnn_new_zero11,165
+void lnn_digit_clear (lnn_t * n, void *p) { free ( n ); }lnn_digit_clear19,307
+lnn_t * lnn_new_T (T num)lnn_new_T24,410
+lnn_t * lnn_new_arr (T num[], unsigned l)lnn_new_arr32,558
+lnn_t * lnn_copy_digit (lnn_t * n) { return lnn_new_T ( n -> num ); }lnn_copy_digit46,779
+lnn_t * lnn_copy (lnn_t * n)lnn_copy49,862
+void lnn_iterate (lnn_t **head, void (*f)(lnn_t *, void *), void * res)lnn_iterate69,1259
+void acumular (lnn_t *n, void * p)acumular81,1482
+void copiar_nodos_aux (lnn_t * n, void * p)copiar_nodos_aux88,1596
+void lnn_map (lnn_t **head, lnn_t * (*f)(lnn_t *), void * res)lnn_map96,1772
+void lnn_clear ( lnn_t ** lista )lnn_clear110,2006
+unsigned lnn_len (lnn_t * n)lnn_len116,2119
+lnn_t * lnn_reverse_copy (lnn_t * n)lnn_reverse_copy124,2253
+T lnn_last_digit (lnn_t * n)lnn_last_digit138,2467
+
+.temp/print.c,170
+void lnn_print_digit_hex (lnn_t * n, void * p)lnn_print_digit_hex10,148
+void lnn_print_hex(lnn_t * n)lnn_print_hex22,359
+void lnn_print_bin(T x)lnn_print_bin30,564
+
+.temp/read.c,279
+unsigned words_in_str (char * s)words_in_str6,57
+char ** split (char * s, unsigned nwords)split20,268
+lnn_t * lnn_new_decimal_string (char * s)lnn_new_decimal_string40,643
+int string_is_dec (char * s)string_is_dec54,935
+int string_is_hex (char * s)string_is_hex62,1042
+
+arit.c,580
+void lnn_incr (lnn_t * n)lnn_incr7,63
+void lnn_decr (lnn_t * n)lnn_decr25,351
+void lnn_set_add_T (lnn_t * n, T x)lnn_set_add_T41,587
+void lnn_set_add (lnn_t * n, lnn_t * x)lnn_set_add52,803
+lnn_t * lnn_digit_mul_T (lnn_t * n, T x)lnn_digit_mul_T69,1124
+lnn_t * lnn_mul_T (lnn_t * n, T x)lnn_mul_T96,1728
+lnn_t * lnn_factorial_T (T n)lnn_factorial_T149,3005
+lnn_t * lnn_mul (lnn_t * x, lnn_t * y)lnn_mul165,3272
+lnn_t * lnn_pow (lnn_t * x, lnn_t * y)lnn_pow183,3665
+int menor (lnn_t * x, lnn_t * y)menor197,3967
+int es_positivo (lnn_t * n)es_positivo207,4203
+
+tests/testprimes.c,44
+int main(int argc, char ** argv)main7,108
+
+tests/primes.c,83
+int main(int argc, char ** argv)main8,107
+T factorial_T (T x)factorial_T27,447
+
+tests/testfactorial-repl.c,62
+int main()main8,107
+T factorial_T (T x)factorial_T48,1085
+
+tests/testfactorial.c,83
+int main(int argc, char ** argv)main8,107
+T factorial_T (T x)factorial_T27,447
+
+tests/testfactorial.py,26
+def main(argv):main4,39
+
+tests/main.c,21
+int main()main5,64
+
+digit.c,885
+void lnn_t_init (lnn_t * n, T num) { n -> num = num; n -> next = 0x0; }lnn_t_init5,40
+lnn_t * lnn_new_zero ()lnn_new_zero7,113
+void lnn_digit_clear (lnn_t * n, void *p) { free ( n ); }lnn_digit_clear14,242
+lnn_t * lnn_new_T (T num)lnn_new_T16,301
+lnn_t * lnn_new_arr (T num[], unsigned l)lnn_new_arr24,435
+lnn_t * lnn_copy_digit (lnn_t * n) { return lnn_new_T ( n -> num ); }lnn_copy_digit37,642
+lnn_t * lnn_copy (lnn_t * n)lnn_copy39,713
+void lnn_dolist (lnn_t **head, void (*f)(lnn_t *, void *), void * res)lnn_dolist46,830
+void acumular (lnn_t *n, void * p)acumular58,1052
+void lnn_map (lnn_t **head, lnn_t * (*f)(lnn_t *), void * res)lnn_map65,1166
+void lnn_clear ( lnn_t ** lista )lnn_clear77,1387
+unsigned lnn_len (lnn_t * n)lnn_len82,1488
+lnn_t * lnn_reverse_copy (lnn_t * n)lnn_reverse_copy89,1602
+T lnn_last_digit (lnn_t * n)lnn_last_digit102,1798
+
+print.c,170
+void lnn_print_digit_hex (lnn_t * n, void * p)lnn_print_digit_hex10,149
+void lnn_print_hex(lnn_t * n)lnn_print_hex22,361
+void lnn_print_bin(T x)lnn_print_bin30,565
+
+read.c,279
+unsigned words_in_str (char * s)words_in_str6,57
+char ** split (char * s, unsigned nwords)split20,268
+lnn_t * lnn_new_decimal_string (char * s)lnn_new_decimal_string40,643
+int string_is_dec (char * s)string_is_dec54,935
+int string_is_hex (char * s)string_is_hex62,1042
