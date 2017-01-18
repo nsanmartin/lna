@@ -5,4 +5,5 @@
 *.exe
 .temp
 TAGS
-
+*.test
+*stackdump
