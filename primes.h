@@ -5,5 +5,6 @@
 
 
 lnn_t * ln_primes_factors_T ( T x );
+int is_prime_T (T x);
 
 #endif

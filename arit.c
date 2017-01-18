@@ -64,7 +64,19 @@ void lnn_set_add (lnn_t * n, lnn_t * x)
     if ( copia ) *pp = copia;
 }
 
-
+void lnn_set_sub_minor (lnn_t * n, lnn_t * x)
+{
+    // precondition: x < n
+    while (x)
+    {
+	if ( n -> num < x -> num )
+	    lnn_decr ( n -> next );
+	n -> num -= x -> num;
+	n = n -> next;
+	x = x -> next;
+    }
+    
+}
 //antes:mul_un_nodo_by_typeT
 lnn_t * lnn_digit_mul_T (lnn_t * n, T x)
 {
@@ -194,7 +206,7 @@ lnn_t * lnn_pow (lnn_t * x, lnn_t * y)
     return res;
 }
 
-int menor (lnn_t * x, lnn_t * y)
+int lnn_minor (lnn_t * x, lnn_t * y)
 {
     unsigned lnn_lenx = lnn_len(x);
     unsigned lnn_leny = lnn_len(y);
@@ -204,7 +216,43 @@ int menor (lnn_t * x, lnn_t * y)
     else return lnn_lenx < lnn_leny;
 }
 
+int lnn_eq (lnn_t * x, lnn_t * y)
+{
+    while ( x && y )
+    {
+	if ( x -> num != y -> num )
+	    return 0;
+	x = x -> next;
+	y = y -> next;
+    }
+    return 1;
+}
+
 int es_positivo (lnn_t * n)
 {
     return n -> next || n -> num;
+}
+
+lnn_t * lnn_mod (lnn_t * n, lnn_t * m)
+{
+    if ( m -> next == 0x0 )
+	return lnn_new_T ( n -> num % m -> num );
+    if ( lnn_eq ( n , m ))
+	return lnn_new_zero();
+    if ( lnn_minor ( n , m ) )
+	return lnn_copy ( n );
+
+    lnn_t * resto = lnn_copy ( n );
+
+    while ( lnn_minor ( m , resto ) )
+    {
+	lnn_t * mmul = lnn_copy ( m );
+	while ( lnn_minor ( mmul, resto) )
+	{
+	    lnn_t * tmp = mmul;
+	    mmul = lnn_mul ( m , m );
+	    lnn_clear (&tmp);
+	}
+//
+    }
 }

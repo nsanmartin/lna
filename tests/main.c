@@ -1,28 +1,19 @@
 #include <stdio.h>
-#include "../digit.h"
 #include "../print.h"
+#include "../digit.h"
+#include "../arit.h"
 
-int main()
+int main(int argc, char ** argv)
 {
-    puts("Probando decr.\n===================\n");
-    unsigned bytes_read;
-    size_t nbytes = 100;
-    char * input_x = (char *) malloc (nbytes + 1);
-    while ( 1 )
+    if (argc != 2)
     {
-        printf("Ingrese un numero: ");
-        bytes_read = getline (&input_x, &nbytes, stdin);
-        if (bytes_read == -1)
-            puts("Error, se produjo un error al leer el numero.");
-
-        else
-        {
-            T x = atoll(input_x);
-	    lnn_t * n = lnn_new_T (x);
-	    lnn_print_hex ( n );
-	    endl;
-        }
+	puts("Usage: factorial NUMBER\n");
+	return 0;
     }
+
+    unsigned long long xll = atoll(argv[1]);
+    T x = (T) xll;
+            
+    endl;
     return 0;
 }
-
