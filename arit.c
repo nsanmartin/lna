@@ -225,7 +225,7 @@ int lnn_eq (lnn_t * x, lnn_t * y)
 	x = x -> next;
 	y = y -> next;
     }
-    return 1;
+    return !x && !y;
 }
 
 int es_positivo (lnn_t * n)
