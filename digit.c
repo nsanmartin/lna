@@ -7,6 +7,10 @@ void lnn_t_init (lnn_t * n, T num) { n -> num = num; n -> next = 0x0; }
 lnn_t * lnn_new_zero ()
 {
     lnn_t * res = malloc(sizeof(lnn_t));
+    if (!res) {
+        fprintf (stderr, "Not enough memory.\n");
+        exit (1);
+    }
     res -> num = (T)0; res -> next = 0x0;
     return res;
 };
@@ -16,6 +20,11 @@ void lnn_digit_clear (lnn_t * n, void *p) { free ( n ); }
 lnn_t * lnn_new_T (T num)
 {
     lnn_t * res = malloc(sizeof(lnn_t));
+    if (!res) {
+        fprintf (stderr, "Not enough memory.\n");
+        exit (1);
+    }
+
     res -> num = num;
     res -> next = 0x0; 
     return res;

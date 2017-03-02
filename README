@@ -4,3 +4,8 @@ La idea es desarrollar una libreria para realizar operaciones aritméticas
 con numeros grandes. Por el momento solo pueden realizarse algunas con
 números naturales (representados como listas enlazadas de `digitos').
 
+Para testear, por ejemplo factorial, puede hacerse:
+
+cd lna/tests
+gcc testfactorial.c ../*.c -o factorial
+factorial 21
