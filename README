@@ -8,4 +8,4 @@ Para testear, por ejemplo factorial, puede hacerse:
 
 cd lna/tests
 gcc testfactorial.c ../*.c -o factorial
-factorial 21
+./factorial 21
