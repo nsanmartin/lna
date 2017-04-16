@@ -43,7 +43,7 @@ void lnn_set_add_T (lnn_t * n, T x)
     if ( n -> num  <=  (T)~0 - x )  n -> num += x;
     else
     {
-	n -> num -= (T)~0 - x + 1;
+      n -> num -= (T)~0 - x + 1;// se puede usar n -> num += x
 	if( n -> next) lnn_incr ( n -> next );
 	else n -> next = lnn_new_T((T)1);
     }
