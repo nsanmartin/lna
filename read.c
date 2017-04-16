@@ -1,7 +1,7 @@
 #include "read.h"
 #include <ctype.h>
 #include "arit.h"
-
+#include <stdio.h>
 
 unsigned words_in_str (char * s)
 {
@@ -20,6 +20,11 @@ unsigned words_in_str (char * s)
 char ** split (char * s, unsigned nwords)
 {
     char ** res = malloc (nwords * sizeof(char *) + 1 );
+    if (!res) {
+        fprintf (stderr, "Not enough memory.\n");
+        exit (1);
+    }
+
     char ** r = res;
     char * p = s;
     while ( *p )
