@@ -1,0 +1,5 @@
+# -*- mode:org -*-
+
+* TODO
+
+** reemplazar `lnn_t *' por lnn_t (usando typdef)
