@@ -42,11 +42,11 @@ char ** split (char * s, unsigned nwords)
     return res;
 }
 
-lnn_t * lnn_new_decimal_string (char * s)
+lnn_t lnn_new_decimal_string (char * s)
 {
-    lnn_t * res = lnn_new_zero();
+    lnn_t res = lnn_new_zero();
     while(*s >= '0' && *s <= '9') {
-        lnn_t * tmp = res;
+        lnn_t tmp = res;
         res = lnn_mul_T  ( res, (T) 10 );
         lnn_clear (&tmp);
         lnn_set_add_T ( res, (T) *s - '0');

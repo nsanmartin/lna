@@ -1,10 +1,10 @@
 #include "arit.h"
 
-lnn_t * lnn_digit_mul_T(lnn_t * n, T x);
+lnn_t lnn_digit_mul_T (lnn_t n, T x);
 
 
 
-void lnn_incr (lnn_t * n)
+void lnn_incr (lnn_t n)
 {
     while ( n -> next && n -> num == (T)~0 )
     {
@@ -22,7 +22,7 @@ void lnn_incr (lnn_t * n)
     }
 }
 
-void lnn_decr (lnn_t * n)
+void lnn_decr (lnn_t n)
 {
     n -> num--;
     if ( n -> num == ~ (T) 0 )
@@ -38,7 +38,7 @@ void lnn_decr (lnn_t * n)
 
 
 
-void lnn_set_add_T (lnn_t * n, T x)
+void lnn_set_add_T (lnn_t n, T x)
 {
     if ( n -> num  <=  (T)~0 - x )  n -> num += x;
     else
@@ -49,14 +49,14 @@ void lnn_set_add_T (lnn_t * n, T x)
     }
 }
 
-void lnn_set_add (lnn_t * n, lnn_t * x)
+void lnn_set_add (lnn_t n, lnn_t x)
 {
-    lnn_t * copia = lnn_copy(x);
-    lnn_t ** pp = &n;
+    lnn_t copia = lnn_copy(x);
+    lnn_t * pp = &n;
     while ( *pp && copia )
     {
 	lnn_set_add_T ( *pp, copia -> num);
-	lnn_t * tmp = copia;
+	lnn_t tmp = copia;
 	copia = copia -> next;
 	free ( tmp );
 	pp = &((*pp) -> next);
@@ -64,7 +64,7 @@ void lnn_set_add (lnn_t * n, lnn_t * x)
     if ( copia ) *pp = copia;
 }
 
-void lnn_set_sub_minor (lnn_t * n, lnn_t * x)
+void lnn_set_sub_minor (lnn_t n, lnn_t x)
 {
     // precondition: x < n
     while (x)
@@ -78,10 +78,10 @@ void lnn_set_sub_minor (lnn_t * n, lnn_t * x)
     
 }
 //antes:mul_un_nodo_by_typeT
-lnn_t * lnn_digit_mul_T (lnn_t * n, T x)
+lnn_t lnn_digit_mul_T (lnn_t n, T x)
 {
     T overflow = (T) 0;
-    lnn_t * res = lnn_new_T( (x & ((T) 1)) * n -> num);
+    lnn_t res = lnn_new_T( (x & ((T) 1)) * n -> num);
     unsigned i = 1;
     T multiplo = x >> 1;
     //todo: si no hay overflow hacerlo comun
@@ -105,10 +105,10 @@ lnn_t * lnn_digit_mul_T (lnn_t * n, T x)
     return res;
 }
 
-lnn_t * lnn_mul_T (lnn_t * n, T x)
+lnn_t lnn_mul_T (lnn_t n, T x)
 {
-    lnn_t * res = lnn_new_zero();
-    lnn_t * r = res;
+    lnn_t res = lnn_new_zero();
+    lnn_t r = res;
     while ( n )
     {
 	if (x != 0 && (n -> num * x) / x != n -> num) // overflow
@@ -158,14 +158,14 @@ lnn_t * lnn_mul_T (lnn_t * n, T x)
 
 
 
-lnn_t * lnn_factorial_T (T n)
+lnn_t lnn_factorial_T (T n)
 {
-    lnn_t * res = lnn_new_T( n );
+    lnn_t res = lnn_new_T( n );
     T factor = n - 1;
-    //lnn_t * res = lnn_copy ( n );
+    //lnn_t res = lnn_copy ( n );
     while ( factor > 1 )
     {
-	lnn_t * tmp = lnn_mul_T ( res, factor );
+	lnn_t tmp = lnn_mul_T ( res, factor );
 
 	lnn_clear ( &res );
 	res = tmp;
@@ -174,13 +174,13 @@ lnn_t * lnn_factorial_T (T n)
     return res;
 }
 
-lnn_t * lnn_mul (lnn_t * x, lnn_t * y)
+lnn_t lnn_mul (lnn_t x, lnn_t y)
 {
-    lnn_t * r = lnn_new_zero();
-    lnn_t * res = r;
+    lnn_t r = lnn_new_zero();
+    lnn_t res = r;
     while ( x )
     {
-        lnn_t * tmp = lnn_mul_T ( y, x -> num );
+        lnn_t tmp = lnn_mul_T ( y, x -> num );
         lnn_set_add ( r, tmp );
         lnn_clear (&tmp);
         if ( x -> next == 0x0) break;
@@ -192,13 +192,13 @@ lnn_t * lnn_mul (lnn_t * x, lnn_t * y)
 }
 
 
-lnn_t * lnn_pow (lnn_t * x, lnn_t * y)
+lnn_t lnn_pow (lnn_t x, lnn_t y)
 {
-    lnn_t * potencia = lnn_copy (y);
-    lnn_t * res = lnn_new_T(1);
+    lnn_t potencia = lnn_copy (y);
+    lnn_t res = lnn_new_T(1);
     while (potencia -> next || potencia -> num)
     {
-        lnn_t * tmp = res;
+        lnn_t tmp = res;
         res = lnn_mul (res, x);
         lnn_clear (&tmp);
         lnn_decr(potencia);
@@ -206,7 +206,7 @@ lnn_t * lnn_pow (lnn_t * x, lnn_t * y)
     return res;
 }
 
-int lnn_minor (lnn_t * x, lnn_t * y)
+int lnn_minor (lnn_t x, lnn_t y)
 {
     unsigned lnn_lenx = lnn_len(x);
     unsigned lnn_leny = lnn_len(y);
@@ -216,7 +216,7 @@ int lnn_minor (lnn_t * x, lnn_t * y)
     else return lnn_lenx < lnn_leny;
 }
 
-int lnn_eq (lnn_t * x, lnn_t * y)
+int lnn_eq (lnn_t x, lnn_t y)
 {
     while ( x && y )
     {
@@ -228,12 +228,12 @@ int lnn_eq (lnn_t * x, lnn_t * y)
     return !x && !y;
 }
 
-int es_positivo (lnn_t * n)
+int es_positivo (lnn_t n)
 {
     return n -> next || n -> num;
 }
 
-lnn_t * lnn_mod (lnn_t * n, lnn_t * m)
+lnn_t lnn_mod (lnn_t n, lnn_t m)
 {
     if ( m -> next == 0x0 )
 	return lnn_new_T ( n -> num % m -> num );
@@ -242,14 +242,14 @@ lnn_t * lnn_mod (lnn_t * n, lnn_t * m)
     if ( lnn_minor ( n , m ) )
 	return lnn_copy ( n );
 
-    lnn_t * resto = lnn_copy ( n );
+    lnn_t resto = lnn_copy ( n );
 
     while ( lnn_minor ( m , resto ) )
     {
-	lnn_t * mmul = lnn_copy ( m );
+	lnn_t mmul = lnn_copy ( m );
 	while ( lnn_minor ( mmul, resto) )
 	{
-	    lnn_t * tmp = mmul;
+	    lnn_t tmp = mmul;
 	    mmul = lnn_mul ( m , m );
 	    lnn_clear (&tmp);
 	}

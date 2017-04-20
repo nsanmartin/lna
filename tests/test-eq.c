@@ -11,8 +11,8 @@ int main(int argc, char ** argv)
 	return 0;
     }
 
-    lnn_t * n = lnn_new_decimal_string (  argv[1] );
-    lnn_t * m = lnn_new_decimal_string (  argv[2] );
+    lnn_t n = lnn_new_decimal_string (  argv[1] );
+    lnn_t m = lnn_new_decimal_string (  argv[2] );
     
     printf ("1: "); lnn_print_hex ( n );endl;
     printf ("2: "); lnn_print_hex ( m );

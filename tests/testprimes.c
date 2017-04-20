@@ -16,7 +16,7 @@ int main(int argc, char ** argv)
     unsigned long long xll = atoll(argv[1]);
     T x = (T) xll;
 
-    lnn_t * n = ln_primes_factors_T (x);
+    lnn_t n = ln_primes_factors_T (x);
     lnn_print_digits_list_dec(n);
     endl;
     return 0;

@@ -16,8 +16,8 @@ int main(int argc, char ** argv)
     unsigned long long xll = atoll(argv[1]);
     T x = (T) xll;
             
-    //lnn_t * nx = lnn_new_T (x);
-    lnn_t * p = lnn_factorial_T(x);
+    //lnn_t nx = lnn_new_T (x);
+    lnn_t p = lnn_factorial_T(x);
     lnn_print_hex (p);
     if (x > 20) printf("L");
     endl;

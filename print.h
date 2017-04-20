@@ -14,9 +14,9 @@
 #define CHAR_PATTERN "%02d "
 
 
-void lnn_print_digit_hex (lnn_t * n, void * p);
-void lnn_print_hex (lnn_t * n);
+void lnn_print_digit_hex (lnn_t n, void * p);
+void lnn_print_hex (lnn_t n);
 void lnn_print_bin (T x);
 
-void lnn_print_digits_list_dec (lnn_t * n);
+void lnn_print_digits_list_dec (lnn_t n);
 #endif

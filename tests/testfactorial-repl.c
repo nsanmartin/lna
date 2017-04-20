@@ -28,8 +28,8 @@ int main()
             printf ("Numero ingresado: "hexFORMAT" (hex), "FORMAT "(dec).\n",
 		    x, x);
             
-            //lnn_t * nx = lnn_new_T (x);
-            lnn_t * p = lnn_factorial_T( x );
+            //lnn_t nx = lnn_new_T (x);
+            lnn_t p = lnn_factorial_T( x );
             puts("Resultado  (en hexadecimal): \n");
             lnn_print_hex (p); endl;
             if (x < 21)
