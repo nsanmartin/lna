@@ -1,5 +1,24 @@
 # -*- mode:org -*-
 
-* TODO
+* todo
 
-** reemplazar `lnn_t *' por lnn_t (usando typdef)
+** rehacer lnn_t (large number: natural) para que en vez de :
+
+struct lnn_t {
+    T num;
+    lnn_t * next;
+}
+
+tengamos algo así:
+
+struct lnn_t {
+    T len;
+    struct nodo {
+        T num;
+        struct nodo * sgt;
+    } * primero;
+}
+
+O algo parecido. 
+** implementar lni_t (large number: integer)
+** implementar lnf_t (large number: float)
