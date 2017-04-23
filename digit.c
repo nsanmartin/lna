@@ -2,79 +2,75 @@
 #include <stdio.h>
 
 
-void lnn_t_init (lnn_t n, T num) { n -> num = num; n -> next = 0x0; }
+/* void digit_init (digit d, T num) */
+/* { */
+/*     d -> num = num; d -> next = d -> prev = 0x0; */
+/* } */
 
-lnn_t lnn_new_zero ()
+void digit_clear (digit d) { free ( d ); }
+
+digit digit_new_zero ()
 {
-    lnn_t res = malloc(sizeof(lnn_t));
+    digit res = malloc(sizeof(digit));
     if (!res) {
         fprintf (stderr, "Not enough memory.\n");
         exit (1);
     }
-    res -> num = (T)0; res -> next = 0x0;
+    res -> num = (T)0; res -> next = res -> prev = 0x0;
     return res;
 };
 
-void lnn_digit_clear (lnn_t n, void *p) { free ( n ); }
 
-lnn_t lnn_new_T (T num)
+digit digit_new_T (T num)
 {
-    lnn_t res = malloc(sizeof(lnn_t));
+    digit res = malloc(sizeof(digit));
     if (!res) {
         fprintf (stderr, "Not enough memory.\n");
         exit (1);
     }
 
     res -> num = num;
-    res -> next = 0x0; 
+    res -> next = res -> prev = 0x0; 
     return res;
 }
 
-lnn_t lnn_new_arr (T num[], unsigned l)
+/* digit digit_new_list__arr (T num[], unsigned l) */
+/* { */
+/*     digit res; digit * p = &res; */
+/*     unsigned i = 0; */
+/*     while ( i < l ) */
+/*     { */
+/* 	*p = digit_new_T ( num[i] ); */
+/* 	p = &((*p) -> next); */
+        
+/* 	i++; */
+/*     } */
+/*     return res; */
+/* } */
+
+digit digit_copy (digit n) { return digit_new_T ( n -> num ); }
+
+digit digit_list_copy (digit n)
 {
-    lnn_t res; lnn_t * p = &res;
-    unsigned i = 0;
-    while ( i < l )
-    {
-	*p = lnn_new_T ( num[i] );
-	p = &((*p) -> next);
-	i++;
-    }
+    digit res;
+    digit_list_map_fwd ( &n, digit_copy, (void *) &res);
     return res;
 }
 
-lnn_t lnn_copy_digit (lnn_t n) { return lnn_new_T ( n -> num ); }
-
-lnn_t lnn_copy (lnn_t n)
+void digit_list_loop_fwd (digit * head, void (*f)(digit))
 {
-    lnn_t res;
-    lnn_map ( &n, lnn_copy_digit, (void *) &res);
-    return res;
-}
-
-void lnn_dolist (lnn_t * head, void (*f)(lnn_t, void *), void * res)
-{
-    lnn_t p = *head; lnn_t tmp;
-    void * r = res;
+    digit p = *head; digit tmp;
     while ( p ) {
 	tmp = p -> next;
-	f ( p , &r);
-	//r = &((*r) -> next);
+	f ( p );
 	p = tmp;
     }
 }
 
-void acumular (lnn_t n, void * p)
+void digit_list_map_fwd (digit * head, digit (*f)(digit), void * res)
 {
-    T ** t = p;
-    ** t +=  n -> num;
-    //    ** (T **) p += n -> num;
-}
-
-void lnn_map (lnn_t * head, lnn_t (*f)(lnn_t), void * res)
-{
-    lnn_t p = *head; lnn_t q;
-    lnn_t* r =  (lnn_t*) res;
+    digit p = * head; digit q;
+    digit * r =  (digit *) res;
     while ( p ) {
 	q = p -> next;
 	*r = f ( p );
@@ -83,33 +79,53 @@ void lnn_map (lnn_t * head, lnn_t (*f)(lnn_t), void * res)
     }
 }
 
-void lnn_clear ( lnn_t * lista )
+void digit_list_map_fwd2 (digit head, digit (*f)(digit), digit * res)
 {
-    lnn_dolist ( lista, lnn_digit_clear, 0x0 ); *lista = 0x0;
+    digit p =  head; digit q;
+    digit * r =  (digit *) res;
+    digit prev_tmp;
+    while ( p ) {
+	q = p -> next;
+	*r = f ( p );
+        if (p -> prev)
+            (*r) -> prev = prev_tmp;
+        prev_tmp = *r;
+	r = &((*r) -> next);
+	p = q;
+    }
 }
 
-unsigned lnn_len (lnn_t n)
+
+
+void digit_list_clear ( digit * lista )
+{
+    digit_list_loop_fwd ( lista, digit_clear );
+    *lista = 0x0;
+}
+
+unsigned digit_list_len (digit n)
 {
     unsigned res = 0;
     while ( n ) { res++; n = n -> next; }
     return res;
 }
 
-lnn_t lnn_reverse_copy (lnn_t n)
-{
-    lnn_t res = 0x0;
-    while ( n )
-    {
-	lnn_t tmp = lnn_new_T ( n -> num );
-	tmp -> next = res;
-	res = tmp;
-	n = n -> next;
-    }
-    return res;
-}
+/* lnn_t lnn_reverse_copy (lnn_t n) */
+/* { */
+/*     lnn_t res = 0x0; */
+/*     while ( n ) */
+/*     { */
+/* 	lnn_t tmp = lnn_new_T ( n -> num ); */
+/* 	tmp -> next = res; */
+/* 	res = tmp; */
+/* 	n = n -> next; */
+/*     } */
+/*     return res; */
+/* } */
 
-T lnn_last_digit (lnn_t n)
-{
-    while (n -> next) n = n -> next;
-    return n -> num;
-}
+/* T last_digit (digit d) */
+/* { */
+    
+/*     while (n -> next) n = n -> next; */
+/*     return n -> num; */
+/* } */

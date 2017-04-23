@@ -2,7 +2,7 @@
 #define _PRINT_H
 
 #include "basetype.h"
-#include "digit.h"
+#include "digit-lnn.h"
 #include <stdio.h>
 
 #define LONG_HEX_PATTERN "%016llx"
@@ -14,9 +14,9 @@
 #define CHAR_PATTERN "%02d "
 
 
-void digit_print_hex (digit n);
-void digit_list_print_hex (digit n);
-void print_bin (T x);
+void lnn_print_digit_hex (lnn_t n, void * p);
+void lnn_print_hex (lnn_t n);
+void lnn_print_bin (T x);
 
-void  digits_list_lnn_print_dec (digit n);
+void lnn_print_digits_list_dec (lnn_t n);
 #endif

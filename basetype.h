@@ -26,8 +26,8 @@ typedef unsigned T;
 
 #else 
 typedef unsigned long long T;
-#define PRINT_DIGIT(num) printf( LONG_PATTERN, (num))
-#define PRINT_DIGIT_HEX(num) printf( LONG_HEX_PATTERN, (num))
+#define PRINT_NUM_DEC(num) printf( LONG_PATTERN, (num))
+#define PRINT_NUM_HEX(num) printf( LONG_HEX_PATTERN, (num))
 #define PATTERN "%lld"
 #define hexPATTERN "%llx"
 #define FORMAT "%lld"

@@ -1,5 +1,5 @@
-#ifndef _LNN_T_H
-#define _LNN_T_H
+#ifndef _DIGIT_H
+#define _DIGIT_H
 
 #include <stdlib.h>
 #include "basetype.h"
@@ -7,32 +7,35 @@
 #define MUL_OVERFLOW(x, y)				\
   (((T)x) != 0 && (((T)y) * ((T)x)) / ((T)x) != ((T)y))
 
-typedef struct lnn_t *lnn_t;
+typedef struct digit *digit;
 
-struct lnn_t {
+struct digit {
     T num;
-    lnn_t next;
+    digit next;
+    digit prev;
 };
 
 
-void lnn_init (lnn_t n); 
-void lnn_digit_clrear();
+//void digit_init (digit d, T num); 
+//void digit_clear();
+void digit_clear(digit d); 
 
-lnn_t lnn_new_zero();
-lnn_t lnn_new_T (T num);
-lnn_t lnn_new_arr (T num[], unsigned l);
-lnn_t lnn_copy_digit(lnn_t n);
-lnn_t lnn_copy (lnn_t n);
+digit digit_new_zero();
 
-unsigned lnn_len (lnn_t n);
-lnn_t lnn_reverse_copy(lnn_t n);
-T lnn_last_digit(lnn_t n);
+digit digit_new_T (T num);
+//digit digit_new_list_arr (T num[], unsigned l);
 
-void lnn_dolist(lnn_t*head, void (*f)(lnn_t, void *), void * res);
-void lnn_map (lnn_t*head, lnn_t (*f)(lnn_t), void * res);
+digit digit_copy(digit n);
+digit digit_list_copy (digit n);
 
-void lnn_digit_clear( lnn_t n, void * p); 
-void lnn_clear(lnn_t* lista );
+unsigned digit_list_len (digit n);
+//digit lnn_reverse_copy(digit n);
+T lnn_last_digit (digit n);
+
+void digit_list_loop_fwd (digit * head, void (*f)(digit));
+void digit_list_map_fwd (digit * head, digit (*f)(digit), void * res);
+
+void digit_list_clear(digit* lista );
 
 
 

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "../print.h"
-#include "../digit.h"
+#include "../digit-lnn.h"
 #include "../arit.h"
 
 int main(int argc, char ** argv)

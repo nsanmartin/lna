@@ -1,33 +1,35 @@
 #include "print.h"
 
-void lnn_print_digit_dec_str (lnn_t n, void * p);
+void digit_print_dec_str (digit n);
 
 
-void lnn_print_digit_dec_str (lnn_t n, void * p)
+void digit_print_dec_str (digit n)
 {
-    PRINT_DIGIT( n -> num);
+    PRINT_NUM_DEC ( n -> num);
     printf(" ");
 }
-void lnn_print_digit_hex (lnn_t n, void * p)
+void digit_print_hex (digit n)
 {
-    PRINT_DIGIT_HEX( n -> num);
+    PRINT_NUM_HEX ( n -> num);
 }
 
-void lnn_print_hex(lnn_t n)
+void digit_list_print_hex(digit n)
 {
-    lnn_t p = lnn_reverse_copy ( n );
-    printf( "0x"hexFORMAT, p -> num );
-    if (p -> next) lnn_dolist (&(p -> next), lnn_print_digit_hex, 0x0); 
+  //digit p = lnn_reverse_copy ( n );
+    puts("TODO: hay que hacer loop_bkw para mostrar esto bien.");
+    printf( "0x"hexFORMAT, n -> num );
+    if (n -> next)
+        digit_list_loop_fwd (&(n -> next), digit_print_hex); 
 }
 
-void lnn_print_bin(T x)
+void print_bin (T x)
 {
     unsigned i = BITS_OF_T;
     while ( i-- > 0 ) printf ( PATTERN, (x >> i) & (T)1);
 }
 
 
-void lnn_print_digits_list_dec (lnn_t n)
+void digits_list_lnn_print_dec (digit n)
 {
-    lnn_dolist (&n, lnn_print_digit_dec_str, 0x0);
+    digit_list_loop_fwd (&n,  digit_print_dec_str);
 }

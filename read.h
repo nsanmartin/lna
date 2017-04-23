@@ -1,7 +1,7 @@
 #ifndef _READ_H
 #define _READ_H
 
-#include "digit.h"
+#include "digit-lnn.h"
 
 lnn_t lnn_t_read_hex (char * s);
 

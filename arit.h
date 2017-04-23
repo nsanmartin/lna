@@ -1,7 +1,7 @@
 #ifndef _ARIT_H
 #define _ARIT_H
 
-#include "digit.h"
+#include "digit-lnn.h"
 
 void lnn_incr (lnn_t n);
 void lnn_decr (lnn_t n);
