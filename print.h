@@ -18,5 +18,5 @@ void digit_print_hex (digit n);
 void digit_list_print_hex (digit n);
 void print_bin (T x);
 
-void  digits_list_lnn_print_dec (digit n);
+void digits_list_lnn_print_dec (digit n);
 #endif

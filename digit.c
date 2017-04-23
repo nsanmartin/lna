@@ -34,19 +34,23 @@ digit digit_new_T (T num)
     return res;
 }
 
-/* digit digit_new_list__arr (T num[], unsigned l) */
-/* { */
-/*     digit res; digit * p = &res; */
-/*     unsigned i = 0; */
-/*     while ( i < l ) */
-/*     { */
-/* 	*p = digit_new_T ( num[i] ); */
-/* 	p = &((*p) -> next); */
+digit digit_new_list_arr (T num[], unsigned l)
+{
+    digit res; digit * p = &res;
+    digit prev_tmp;
+    unsigned i = 0;
+    while ( i < l )
+    {
+	*p = digit_new_T ( num[i] );
+        if (i > 0)
+            (*p) -> prev = prev_tmp;
+        prev_tmp = *p;
+	p = &((*p) -> next);
         
-/* 	i++; */
-/*     } */
-/*     return res; */
-/* } */
+	i++;
+    }
+    return res;
+}
 
 digit digit_copy (digit n) { return digit_new_T ( n -> num ); }
 
@@ -66,6 +70,20 @@ void digit_list_loop_fwd (digit * head, void (*f)(digit))
 	p = tmp;
     }
 }
+
+
+
+void digit_list_loop_bwd (digit last, void (*f)(digit))
+{
+    digit p = last; digit tmp;
+    while ( p ) {
+	tmp = p -> prev;
+	f ( p );
+	p = tmp;
+    }
+}
+
+
 
 void digit_list_map_fwd (digit * head, digit (*f)(digit), void * res)
 {

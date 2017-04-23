@@ -15,11 +15,11 @@ void digit_print_hex (digit n)
 
 void digit_list_print_hex(digit n)
 {
-  //digit p = lnn_reverse_copy ( n );
-    puts("TODO: hay que hacer loop_bkw para mostrar esto bien.");
-    printf( "0x"hexFORMAT, n -> num );
-    if (n -> next)
-        digit_list_loop_fwd (&(n -> next), digit_print_hex); 
+    while(n -> next)
+      n = n -> next;
+    printf( "0x" );
+    digit_list_loop_bwd (n, digit_print_hex);
+    printf("\n");
 }
 
 void print_bin (T x)
