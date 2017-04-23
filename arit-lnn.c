@@ -4,25 +4,21 @@ lnn_t lnn_digit_mul_T (lnn_t n, T x);
 
 
 
-void lni_incr (lni_t n)
+void lnn_incr (lnn_t n)
 {
-    if ( n -> pos )
+    while ( n -> next && n -> num == (T)~0 )
     {
-        digit p = n -> pos;
-        while ( p -> next && p -> num == (T)~0 )
-        {
-            p -> num = 0;
-            p = p -> next;
-        }
-        if ( n -> num < (T)~0 )
-        {
-            n -> num++;
-        }
-        else if ( n -> next == 0x0 ) // no queda otra, igual
-        {
-            n -> num = 0;
-            n -> next = lnn_new_T ((T) 1);
-        }
+	n -> num = 0;
+	n = n -> next;
+    }
+    if ( n -> num < (T)~0 )
+    {
+	n -> num++;
+    }
+    else if ( n -> next == 0x0 ) // no queda otra, igual
+    {
+	n -> num = 0;
+	n -> next = lnn_new_T ((T) 1);
     }
 }
 

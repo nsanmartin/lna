@@ -1,23 +1,23 @@
 #ifndef _ARIT_H
 #define _ARIT_H
 
-#include "lni.h"
+#include "digit.h"
 
-void lni_incr (lni_t n);
-void lni_decr (lni_t n);
-void lni_set_add (lni_t n, lni_t x);
-void lni_set_add_T (lni_t n, T x);
+void digit_incr (digit n);
+void digit_decr (digit n);
+/* void digit_set_add (digit n, digit x); */
+/* void digit_set_add_T (digit n, T x); */
 
-void lni_set_sub_minor (lni_t n, lni_t x);
+/* void digit_set_sub_minor (digit n, digit x); */
 
-lni_t lni_mul_T (lni_t n, T x);
-lni_t lni_mul (lni_t x, lni_t y);
-lni_t lni_pow (lni_t x, lni_t y);
+/* digit digit_mul_T (digit n, T x); */
+/* digit digit_mul (digit x, digit y); */
+/* digit digit_pow (digit x, digit y); */
 
-lni_t lni_factorial_T (T n);
+/* digit digit_factorial_T (T n); */
 
-int lni_minor (lni_t x, lni_t y);
-int lni_eq (lni_t x, lni_t y);
+/* int digit_minor (digit x, digit y); */
+/* int digit_eq (digit x, digit y); */
 
 //////////////////////////////////////////////////////////////////
 /* void lnn_incr (lnn_t n); */
