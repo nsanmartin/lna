@@ -44,7 +44,43 @@ void digit_decr (digit d)
         d -> num --;
 }
 
+void T_large_mul (const T x, const T y, T * lbits, T * rbits)
+{
+    *lbits = *rbits = 0;
+    if ( !x || !y )
+        return;
+    else if (1 & y)
+        *rbits = x;
+    unsigned dnum = 1;
+    while ( y >> dnum && dnum < BITS_OF_T) {
+        if ( 1 & ( y >> dnum) ) {
+            *rbits += x << dnum ;
+            *lbits += x >> (BITS_OF_T - dnum);
+        }
+        dnum++;
+    }
+    
+}
 
+void digit_set_add (digit x, digit y)
+{
+    unsigned carry = 0;
+    digit p = x -> prev;
+    while (x && y)
+    {
+        if (carry)
+            digit_incr (x);
+        carry = ( x -> num  >  (T)~0 - y -> num ) ? 1 : 0;
+        x -> num += y -> num;
+        p = x;
+        x = x -> next;
+        y = y -> next;
+    }
+    if ( x && carry)
+        digit_incr (x);
+    if ( y )
+        lala
+}
 
 /* void digit_set_add_T (digit n, T x) */
 /* { */

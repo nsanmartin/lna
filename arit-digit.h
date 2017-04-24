@@ -5,6 +5,8 @@
 
 void digit_incr (digit n);
 void digit_decr (digit n);
+void digit_set_add (digit x, const digit y);
+
 /* void digit_set_add (digit n, digit x); */
 /* void digit_set_add_T (digit n, T x); */
 

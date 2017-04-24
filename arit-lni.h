@@ -27,7 +27,7 @@ void lni_incr (lni_t n)
     }
     else if ( n -> neg )
     {
-        
+      // falta
     }
 }
 
