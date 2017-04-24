@@ -31,5 +31,5 @@ void print_bin (T x)
 
 void digits_list_lnn_print_dec (digit n)
 {
-    digit_list_loop_fwd (&n,  digit_print_dec_str);
+    digit_list_loop_fwd (n,  digit_print_dec_str);
 }

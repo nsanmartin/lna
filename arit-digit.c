@@ -62,25 +62,40 @@ void T_large_mul (const T x, const T y, T * lbits, T * rbits)
     
 }
 
-void digit_set_add (digit x, digit y)
+void T_large_sum (const T x, const T y, const T carry_in, T * sum, T * carry)
 {
-    unsigned carry = 0;
-    digit p = x -> prev;
-    while (x && y)
-    {
-        if (carry)
-            digit_incr (x);
-        carry = ( x -> num  >  (T)~0 - y -> num ) ? 1 : 0;
-        x -> num += y -> num;
-        p = x;
-        x = x -> next;
-        y = y -> next;
+    * carry = ( x > (T)~0 - y ) ? 1 : 0;
+    * sum = x + y;
+    if ( * carry_in ) {
+        if (* sum == ~(T)0) {
+            * carry ++;
+        } 
+        * sum ++;
     }
-    if ( x && carry)
-        digit_incr (x);
-    if ( y )
-        lala
 }
+
+digit digit_add (digit x, digit y)
+{
+    digit sum;
+    digit s = sum;
+    T carry_out = 0;
+    T carri_in, suma_T;
+
+    while ( x && y )
+    {
+        carry_in = carry_out;
+        T_large_sum ( x -> num, y -> num, carry_in, &suma_T, &carry_out);
+        s = digit_new ( suma_T );
+        if ( !x -> next || !y -> next )
+            break;
+        s -> next = digit_new (0);
+        s -> next -> prev = s;
+        s = s -> next;
+    }
+
+    
+    
+} 
 
 /* void digit_set_add_T (digit n, T x) */
 /* { */

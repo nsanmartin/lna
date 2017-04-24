@@ -34,7 +34,27 @@ digit digit_new_T (T num)
     return res;
 }
 
+
 digit digit_new_list_arr (T num[], unsigned l)
+{
+
+    digit next_tmp, * p;
+    unsigned i = 0;
+    while ( i < l )
+    {
+	*p = digit_new_T ( num[i] );
+        if (i > 0)
+            (*p) -> next = next_tmp;
+        next_tmp = *p;
+	p = &((*p) -> prev);
+        
+	i++;
+    }
+    return next_tmp;
+}
+
+
+digit digit_new_list_arr_invertido (T num[], unsigned l)
 {
     digit res; digit * p = &res;
     digit prev_tmp;
@@ -57,13 +77,13 @@ digit digit_copy (digit n) { return digit_new_T ( n -> num ); }
 digit digit_list_copy (digit n)
 {
     digit res;
-    digit_list_map_fwd ( &n, digit_copy, (void *) &res);
+    digit_list_map_fwd ( n, digit_copy, (void *) &res);
     return res;
 }
 
-void digit_list_loop_fwd (digit * head, void (*f)(digit))
+void digit_list_loop_fwd (digit head, void (*f)(digit))
 {
-    digit p = *head; digit tmp;
+    digit p = head; digit tmp;
     while ( p ) {
 	tmp = p -> next;
 	f ( p );
@@ -85,7 +105,7 @@ void digit_list_loop_bwd (digit last, void (*f)(digit))
 
 
 
-void digit_list_map_fwd (digit * head, digit (*f)(digit), void * res)
+void digit_list_map_fwd_old (digit * head, digit (*f)(digit), void * res)
 {
     digit p = * head; digit q;
     digit * r =  (digit *) res;
@@ -97,7 +117,7 @@ void digit_list_map_fwd (digit * head, digit (*f)(digit), void * res)
     }
 }
 
-void digit_list_map_fwd2 (digit head, digit (*f)(digit), digit * res)
+void digit_list_map_fwd (digit head, digit (*f)(digit), void * res)
 {
     digit p =  head; digit q;
     digit * r =  (digit *) res;
@@ -117,7 +137,7 @@ void digit_list_map_fwd2 (digit head, digit (*f)(digit), digit * res)
 
 void digit_list_clear ( digit * lista )
 {
-    digit_list_loop_fwd ( lista, digit_clear );
+    digit_list_loop_fwd ( *lista, digit_clear );
     *lista = 0x0;
 }
 

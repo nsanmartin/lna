@@ -33,8 +33,8 @@ unsigned digit_list_len (digit n);
 //digit lnn_reverse_copy(digit n);
 T lnn_last_digit (digit n);
 
-void digit_list_loop_fwd (digit * head, void (*f)(digit));
-void digit_list_map_fwd (digit * head, digit (*f)(digit), void * res);
+void digit_list_loop_fwd (digit head, void (*f)(digit));
+void digit_list_map_fwd (digit  head, digit (*f)(digit), void * res);
 void digit_list_loop_bwd (digit last, void (*f)(digit));
 
 void digit_list_clear(digit* lista );
