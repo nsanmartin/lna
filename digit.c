@@ -2,11 +2,6 @@
 #include <stdio.h>
 
 
-/* void digit_init (digit d, T num) */
-/* { */
-/*     d -> num = num; d -> next = d -> prev = 0x0; */
-/* } */
-
 void digit_clear (struct digit * d) { free ( d ); }
 
 struct digit * digit_new_zero ()
@@ -20,7 +15,6 @@ struct digit * digit_new_zero ()
     return res;
 };
 
-
 struct digit * digit_new_T (T num)
 {
     struct digit * res = malloc(sizeof(struct digit));
@@ -28,16 +22,13 @@ struct digit * digit_new_T (T num)
         fprintf (stderr, "Not enough memory.\n");
         exit (1);
     }
-
     res -> num = num;
     res -> next = res -> prev = 0x0; 
     return res;
 }
 
-
 struct digit * digit_new_list_arr (T num[], unsigned l)
 {
-
     struct digit * next_tmp, ** p;
     unsigned i = 0;
     while ( i < l )
@@ -51,7 +42,6 @@ struct digit * digit_new_list_arr (T num[], unsigned l)
     }
     return next_tmp;
 }
-
 
 struct digit * digit_new_list_arr_invertido (T num[], unsigned l)
 {
@@ -89,7 +79,6 @@ T digit_list_copy (struct digit ** dest, struct digit const * src)
         src = next;
         res++;
     }
-
     return res;
 }
 
@@ -102,8 +91,6 @@ void digit_list_loop_fwd (struct digit *head, void (*f)(struct digit *))
 	p = tmp;
     }
 }
-                          
-
 
 void digit_list_loop_bwd (struct digit * last, void (*f)(struct digit * ))
 {
@@ -114,8 +101,6 @@ void digit_list_loop_bwd (struct digit * last, void (*f)(struct digit * ))
 	p = tmp;
     }
 }
-
-
 
 void digit_list_map_fwd_old (struct digit **head,
                              struct digit * (*f)(struct digit *),
