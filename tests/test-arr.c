@@ -21,7 +21,7 @@ int main(int argc, char ** argv)
     }
 
 
-    digit d = digit_new_list_arr(x, argc - 1);
+    struct digit * d = digit_new_list_arr(x, argc - 1);
     print_arr(x, argc - 1);
     puts("\nUso digit_list_print_hex:");
     digit_list_print_hex(d);

@@ -2,6 +2,7 @@
 #include "../print.h"
 #include "../digit.h"
 //#include "../arit.h"
+#define len(A) (sizeof(A)/sizeof(*(A)))
 
 void print_arr (T const * a, unsigned l);
 int main(int argc, char ** argv)
@@ -22,19 +23,9 @@ int main(int argc, char ** argv)
 
     digit d = digit_new_list_arr(x, argc - 1);
     print_arr(x, argc - 1);
-    /* puts("\nUso digit_list_print_hex:"); */
-    /* digit_list_print_hex(d); */
+    puts("\nUso digit_list_print_hex:");
+    digit_list_print_hex(d);
 
-    digit copia;
-    digit_list_copy (&copia, d);
-    puts("\nLa copia:");
-    digit_list_print_hex(copia);
-
-    digit_list_clear (&d);
-    puts("\nLa copia:");
-    digit_list_print_hex(copia);
-
-    digit_list_clear (&copia);
     return 0;
 }
 

@@ -52,14 +52,15 @@ void T_large_mul (const T x, const T y, T * lbits, T * rbits)
     else if (1 & y)
         *rbits = x;
     unsigned dnum = 1;
-    while ( y >> dnum && dnum < BITS_OF_T) {
-        if ( 1 & ( y >> dnum) ) {
-            *rbits += x << dnum ;
-            *lbits += x >> (BITS_OF_T - dnum);
-        }
-        dnum++;
+    while ( y >> dnum && dnum < BITS_OF_T)
+    {
+          if ( 1 & ( y >> dnum) )
+          {
+              *rbits += x << dnum ;
+              *lbits += x >> (BITS_OF_T - dnum);
+          }
+          dnum++;
     }
-    
 }
 
 void T_large_sum (const T x, const T y, const T carry_in, T * sum, T * carry)
@@ -74,28 +75,26 @@ void T_large_sum (const T x, const T y, const T carry_in, T * sum, T * carry)
     }
 }
 
-digit digit_add (digit x, digit y)
-{
-    digit sum;
-    digit s = sum;
-    T carry_out = 0;
-    T carri_in, suma_T;
+/* digit digit_add (digit x, digit y) */
+/* { */
+/*     digit sum, next_tmp; */
+/*     digit s = sum; */
+/*     T carry_out = 0; */
+/*     T carri_in, suma_T; */
 
-    while ( x && y )
-    {
-        carry_in = carry_out;
-        T_large_sum ( x -> num, y -> num, carry_in, &suma_T, &carry_out);
-        s = digit_new ( suma_T );
-        if ( !x -> next || !y -> next )
-            break;
-        s -> next = digit_new (0);
-        s -> next -> prev = s;
-        s = s -> next;
-    }
+/*     while ( x && y ) */
+/*     { */
+/*         carry_in = carry_out; */
+/*         T_large_sum ( x -> num, y -> num, carry_in, &suma_T, &carry_out); */
+/*         s = digit_new ( suma_T ); */
+
+
+/*         s = s -> next; */
+/*     } */
 
     
     
-} 
+/* }  */
 
 /* void digit_set_add_T (digit n, T x) */
 /* { */
