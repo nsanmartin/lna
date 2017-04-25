@@ -2,20 +2,20 @@
 #include <stdio.h>
 
 
-void digit_clear (struct digit * d) { free ( d ); }
+//void digit_clear (struct digit * d) { free ( d ); }
 
-struct digit * digit_new_zero ()
-{
-    struct digit * res = malloc(sizeof(struct digit));
-    if (!res) {
-        fprintf (stderr, "Not enough memory.\n");
-        exit (1);
-    }
-    res -> num = (T)0; res -> next = res -> prev = 0x0;
-    return res;
-};
+/* struct digit * digit_new_zero () */
+/* { */
+/*     struct digit * res = malloc(sizeof(struct digit)); */
+/*     if (!res) { */
+/*         fprintf (stderr, "Not enough memory.\n"); */
+/*         exit (1); */
+/*     } */
+/*     res -> num = (T)0; res -> next = res -> prev = 0x0; */
+/*     return res; */
+/* }; */
 
-struct digit * digit_new_T (T num)
+struct digit * digits_new (T num)
 {
     struct digit * res = malloc(sizeof(struct digit));
     if (!res) {
@@ -27,13 +27,12 @@ struct digit * digit_new_T (T num)
     return res;
 }
 
-struct digit * digit_new_list_arr (T num[], unsigned l)
+struct digit * digits_new_list_arr (T num[], unsigned l)
 {
-    struct digit * next_tmp, ** p;
+    struct digit * res; struct digit * next_tmp, ** p = &res;
     unsigned i = 0;
-    while ( i < l )
-    {
-	*p = digit_new_T ( num[i] );
+    while ( i < l ) {
+	*p = digits_new ( num[i] );
         if (i > 0)
             (*p) -> next = next_tmp;
         next_tmp = *p;
@@ -43,14 +42,14 @@ struct digit * digit_new_list_arr (T num[], unsigned l)
     return next_tmp;
 }
 
-struct digit * digit_new_list_arr_invertido (T num[], unsigned l)
+struct digit * digits_new_list_arr_invertido (T num[], unsigned l)
 {
     struct digit * res; struct digit ** p = &res;
     struct digit * prev_tmp;
     unsigned i = 0;
     while ( i < l )
     {
-	*p = digit_new_T ( num[i] );
+	*p = digits_new ( num[i] );
         if (i > 0)
             (*p) -> prev = prev_tmp;
         prev_tmp = *p;
@@ -60,19 +59,20 @@ struct digit * digit_new_list_arr_invertido (T num[], unsigned l)
     return res;
 }
 
-struct digit * digit_copy (struct digit const * n)
-{
-    return digit_new_T ( n -> num );
-}
+/* struct digit * digits_copy (struct digit const * n) */
+/* { */
+/*     return digits_new ( n -> num ); */
+/* } */
 
-T digit_list_copy (struct digit ** dest, struct digit const * src)
+T digits_copy (struct digit ** dest, struct digit const * src)
 {
-    T res = 0;
+    T res = 0; unsigned first = 0;
     struct digit * prev, * next;
     while ( src ) {
+        
         next = src -> next;
-        * dest = digit_new_T ( src -> num );
-        if ( src -> prev )
+        * dest = digits_new ( src -> num );
+        if ( first++ > 0 )
             (* dest) -> prev = prev;
         prev = * dest;
         dest = &((* dest) -> next);
@@ -82,7 +82,7 @@ T digit_list_copy (struct digit ** dest, struct digit const * src)
     return res;
 }
 
-void digit_list_loop_fwd (struct digit *head, void (*f)(struct digit *))
+void digits_loop_fwd (struct digit *head, void (*f)(struct digit *))
 {
     struct digit * p = head; struct digit * tmp;
     while ( p ) {
@@ -92,7 +92,7 @@ void digit_list_loop_fwd (struct digit *head, void (*f)(struct digit *))
     }
 }
 
-void digit_list_loop_bwd (struct digit * last, void (*f)(struct digit * ))
+void digits_loop_bwd (struct digit * last, void (*f)(struct digit * ))
 {
     struct digit * p = last; struct digit * tmp;
     while ( p ) {
@@ -102,7 +102,7 @@ void digit_list_loop_bwd (struct digit * last, void (*f)(struct digit * ))
     }
 }
 
-void digit_list_map_fwd_old (struct digit **head,
+void digits_map_fwd_old (struct digit **head,
                              struct digit * (*f)(struct digit *),
                              void * res)
 {
@@ -116,7 +116,7 @@ void digit_list_map_fwd_old (struct digit **head,
     }
 }
 
-void digit_list_map_fwd (struct digit *head,
+void digits_map_fwd (struct digit *head,
                          struct digit * (*f)(struct digit *),
                          void * res)
 {
@@ -136,13 +136,15 @@ void digit_list_map_fwd (struct digit *head,
 }
 
 
-void digit_list_clear ( struct digit ** lista )
+void free_digit (struct digit * d) { free ( d ); }
+
+void digits_clear ( struct digit ** lista )
 {
-    digit_list_loop_fwd ( *lista, digit_clear );
+    digits_loop_fwd ( *lista, &free_digit );
     *lista = 0x0;
 }
 
-T digit_list_len (struct digit * n)
+T digits_len (struct digit * n)
 {
     T res = 0;
     while ( n ) { res++; n = n -> next; }

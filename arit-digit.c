@@ -1,10 +1,10 @@
 #include "arit-digit.h"
 #include <stdio.h>
-digit digit_digit_mul_T (digit n, T x);
+//struct digit * digit_digit_mul_T (struct digit * n, T x);
 
 
 
-void digit_incr (digit d)
+void digits_incr (struct digit * d)
 {
         while ( d -> next && d -> num == (T)~0 )
         {
@@ -18,12 +18,12 @@ void digit_incr (digit d)
         else if ( d -> next == 0x0 ) // no queda otra, igual
         {
             d -> num = 0;
-            d -> next = digit_new_T ((T) 1);
+            d -> next = digits_new ((T) 1);
             d -> next -> prev = d;
         }
 }
 
-void digit_decr (digit d)
+void digits_decr (struct digit *d)
 {
     //vale d > 0
     while ( d -> num == 0 && d -> next )
@@ -38,7 +38,7 @@ void digit_decr (digit d)
     else if ( ! d -> next )//( d -> num == 1 )
     {
         d -> prev -> next = 0x0;
-        digit_clear ( d );
+        digits_clear ( &d );
     }
     else
         d -> num --;
@@ -63,19 +63,70 @@ void T_large_mul (const T x, const T y, T * lbits, T * rbits)
     }
 }
 
-void T_large_sum (const T x, const T y, const T carry_in, T * sum, T * carry)
+void sumador (const T x, const T y, const T carry_in, T * sum, T * carry)
 {
     * carry = ( x > (T)~0 - y ) ? 1 : 0;
     * sum = x + y;
-    if ( * carry_in ) {
+    if ( carry_in ) {
         if (* sum == ~(T)0) {
             * carry ++;
-        } 
+        }
         * sum ++;
     }
 }
 
-/* digit digit_add (digit x, digit y) */
+
+struct digit * digits_add (struct digit const * x, struct digit const *y)
+{
+    struct digit *res, *r;
+    T suma, cin, cout;
+
+    sumador (x -> num, y -> num, 0, &suma, &cout);
+    printf("suma: %llx\n", suma);
+    res = digits_new (suma);    
+
+    r = res;
+    cin = cout;
+    x = x -> next; y = y -> next;
+    while (x && y) {
+        puts("en el while");
+        sumador (x -> num, y -> num, 0, &suma, &cout );
+        r -> next = digits_new (suma);
+        cin = cout;
+        r -> next -> prev = r;
+        r = r -> next;
+        x = x -> next; y = y -> next;
+    }
+
+
+//    printf ("x: %llu\n", x);
+    if (x || y) {
+        puts("x||y");
+        struct digit const * maximo;// = x ? x : y;
+        if (x) {
+            maximo = x;
+        } else {
+            maximo = y;
+        }
+            
+        struct digit  * copia;
+        digits_copy ( &copia, maximo );
+        r -> next = copia;
+        if (cout)
+            digits_incr(r -> next);
+    }
+    else {
+        puts("not x||y");
+        if (cout) {
+            r -> next = digits_new (1);
+        }
+    }
+
+    return res;
+
+}
+
+/* struct digit *digit_add (struct digit *x, struct digit *y) */
 /* { */
 /*     digit sum, next_tmp; */
 /*     digit s = sum; */

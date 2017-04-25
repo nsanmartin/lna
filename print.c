@@ -1,24 +1,25 @@
 #include "print.h"
 
-void digit_print_dec_str (struct digit * n);
+void digit_node_print_dec_str (struct digit * n);
+void digit_node_print_hex (struct digit * n);
 
 
-void digit_print_dec_str (struct digit * n)
+void digit_node_print_dec_str (struct digit * n)
 {
     PRINT_NUM_DEC ( n -> num);
     printf(" ");
 }
-void digit_print_hex (struct digit * n)
+void digit_node_print_hex (struct digit * n)
 {
     PRINT_NUM_HEX ( n -> num);
 }
 
-void digit_list_print_hex(struct digit * n)
+void digits_print_hex(struct digit * n)
 {
     while(n -> next)
       n = n -> next;
     printf( "0x" );
-    digit_list_loop_bwd (n, digit_print_hex);
+    digits_loop_bwd (n, digit_node_print_hex);
     printf("\n");
 }
 
@@ -31,5 +32,5 @@ void print_bin (T x)
 
 void digits_list_lnn_print_dec (struct digit * n)
 {
-    digit_list_loop_fwd (n,  digit_print_dec_str);
+    digits_loop_fwd (n,  digit_node_print_dec_str);
 }

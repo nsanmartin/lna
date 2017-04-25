@@ -33,6 +33,20 @@ int main(int argc, char ** argv)
     digits_clear(&d);
     digits_print_hex(e);
     printf("len = %llu\n", len);
+
+    digits_incr(e);
+    digits_print_hex(e);
+    digits_decr(e);
+    digits_print_hex(e);
+    puts("sumandos:");
+    struct digit * n = digits_new (2);
+    digits_print_hex(e);
+    digits_print_hex(n);
+    puts("--------");
+    struct digit * suma = digits_add (e, n);
+    digits_print_hex(suma);
+    
+    
     return 0;
 }
 

@@ -3,9 +3,11 @@
 
 #include "digit.h"
 
-void digit_incr (digit n);
-void digit_decr (digit n);
-void digit_set_add (digit x, const digit y);
+void digits_incr (struct digit * n);
+void digits_decr (struct digit * n);
+struct digit * digits_add (struct digit const * x, struct digit const *y);
+
+//void digit_set_add (struct digit * x, struct digit const  * y);
 
 /* void digit_set_add (digit n, digit x); */
 /* void digit_set_add_T (digit n, T x); */
