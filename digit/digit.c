@@ -1,7 +1,7 @@
 #include "../digit.h"
 #include "../arit.h"
 #include <stdio.h>
-
+#include "../print.h"
 
 struct digit * digits_new (T num)
 {
@@ -16,14 +16,17 @@ struct digit * digits_new (T num)
 }
 
 
-struct digit * digits_new_decimal_string (char * s)
+struct digit * digits_new_decimal_string (char const * s)
 {
     struct digit * res = digits_new (0);
+
     while(*s >= '0' && *s <= '9') {
-        struct digit * tmp = res;
+        T dec_dig = ((T) *s - '0');
+
         digits_set_mul_T ( res, (T) 10 );
-        digits_set_add_T ( res, (T) *s - '0');
+        digits_set_add_T ( res, dec_dig );
         s++;
+
     }
     return res;
 }

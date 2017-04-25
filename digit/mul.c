@@ -20,7 +20,7 @@ void multiplicador (const T x, const T y, T * lbits, T * rbits)
     }
 }
 
-void digits_set_mul_T (struct digit * ds, T x)
+void digits_set_mul_T (struct digit * ds, T const x)
 {
     T lb, rb;
     T mulcarry = 0; T addcarry;

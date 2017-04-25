@@ -4,10 +4,11 @@
 #include "../digit.h"
 #include "../arit.h"
 /* compilar con:
- * gcc ../digit/*.c test....c -o fromstr -lgmp -lm
+ * gcc ../digit/*.c suma.c -o suma -lgmp -lm
  *
  */
 
+void print (char * msg, struct digit * d);
 
 int main(int argc, char ** argv)
 {
@@ -15,16 +16,20 @@ int main(int argc, char ** argv)
         puts("Usage: prog NUMBER\n");return 0;
     }
 
-    char const * input = argv[1];
-    
-    struct digit * d = digits_new_decimal_string( input );
-    puts("");
-    digits_print_hex(d);
 
+    
+    struct digit * x = digits_new_decimal_string( argv[1] );
+    puts("");
+    digits_incr(x);
+    digits_print_hex( x );
     mpz_t a;
     mpz_init_set_str (a, argv[1], 10);
-    gmp_printf ("%#Zx", a); 
 
+    mpz_add_ui (a, a, 1);		
+    
+    gmp_printf ("%#Zx", a); 
+    
+      
     
     return 0;
 }

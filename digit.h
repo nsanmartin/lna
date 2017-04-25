@@ -15,7 +15,7 @@ struct digit {
 
 struct digit * digits_new (T num);
 struct digit * digits_new_array (T num[], unsigned l);
-struct digit * digits_new_decimal_string (char * s);
+struct digit * digits_new_decimal_string (char const * s);
 
 T digits_copy (struct digit ** dest, struct digit const * src);
 T digits_list_len (struct digit * n);

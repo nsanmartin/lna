@@ -8,8 +8,8 @@ void digits_decr (struct digit * n);
 struct digit * digits_add (struct digit const * x, struct digit const *y);
 
 void sumador (const T x, const T y, const T carry_in, T * sum, T * carry);
-void digits_set_mul_T (struct digit * ds, T x);
-void digits_set_add_T (struct digit * ds, T y);
+void digits_set_mul_T (struct digit * ds, T const x);
+void digits_set_add_T (struct digit * ds, T const y);
 //void digit_set_add (struct digit * x, struct digit const  * y);
 
 /* void digit_set_add (digit n, digit x); */
