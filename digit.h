@@ -13,19 +13,14 @@ struct digit {
     struct digit * prev;
 };
 
-//void digit_clear(struct digit * d); 
-
-//struct digit * digit_new_zero();
 struct digit * digits_new (T num);
-struct digit * digits_new_list_arr (T num[], unsigned l);
-//struct digit * digits_copy(struct digit const * n);
+struct digit * digits_new_array (T num[], unsigned l);
+struct digit * digits_new_decimal_string (char * s);
 
 T digits_copy (struct digit ** dest, struct digit const * src);
 T digits_list_len (struct digit * n);
-//digit lnn_reverse_copy(digit n);
-//T lnn_last_digit (struct digit * n);
 
-void digits_loop_fwd (struct digit * head, void (*f)(void *));
+void digits_loop_fwd (struct digit * head, void (*f)(struct digit *));
 void digits_loop_bwd (struct digit * last, void (*f)(struct digit *));
 
 /* void digit_list_map_fwd (struct digit *  head, */

@@ -14,7 +14,6 @@
 #define CHAR_PATTERN "%02d "
 
 
-//void digit_print_hex (struct digit * n);
 void digits_print_hex (struct digit * n);
 void print_bin (T x);
 

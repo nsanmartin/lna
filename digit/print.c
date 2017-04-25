@@ -1,4 +1,4 @@
-#include "print.h"
+#include "../print.h"
 
 void digit_node_print_dec_str (struct digit * n);
 void digit_node_print_hex (struct digit * n);
@@ -16,10 +16,15 @@ void digit_node_print_hex (struct digit * n)
 
 void digits_print_hex(struct digit * n)
 {
+    // debug
+    if (!n) {
+        fprintf(stderr, "No puedo printear 0x0");
+        exit(1);
+    }
     while(n -> next)
       n = n -> next;
-    printf( "0x" );
-    digits_loop_bwd (n, digit_node_print_hex);
+    printf( "0x"hexFORMAT, n -> num );
+    digits_loop_bwd (n -> prev, digit_node_print_hex);
     printf("\n");
 }
 

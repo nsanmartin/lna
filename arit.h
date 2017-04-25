@@ -1,23 +1,30 @@
 #ifndef _ARIT_H
 #define _ARIT_H
 
-#include "lni.h"
+#include "digit.h"
 
-void lni_incr (lni_t n);
-void lni_decr (lni_t n);
-void lni_set_add (lni_t n, lni_t x);
-void lni_set_add_T (lni_t n, T x);
+void digits_incr (struct digit * n);
+void digits_decr (struct digit * n);
+struct digit * digits_add (struct digit const * x, struct digit const *y);
 
-void lni_set_sub_minor (lni_t n, lni_t x);
+void sumador (const T x, const T y, const T carry_in, T * sum, T * carry);
+void digits_set_mul_T (struct digit * ds, T x);
+void digits_set_add_T (struct digit * ds, T y);
+//void digit_set_add (struct digit * x, struct digit const  * y);
 
-lni_t lni_mul_T (lni_t n, T x);
-lni_t lni_mul (lni_t x, lni_t y);
-lni_t lni_pow (lni_t x, lni_t y);
+/* void digit_set_add (digit n, digit x); */
+/* void digit_set_add_T (digit n, T x); */
 
-lni_t lni_factorial_T (T n);
+/* void digit_set_sub_minor (digit n, digit x); */
 
-int lni_minor (lni_t x, lni_t y);
-int lni_eq (lni_t x, lni_t y);
+/* digit digit_mul_T (digit n, T x); */
+/* digit digit_mul (digit x, digit y); */
+/* digit digit_pow (digit x, digit y); */
+
+/* digit digit_factorial_T (T n); */
+
+/* int digit_minor (digit x, digit y); */
+/* int digit_eq (digit x, digit y); */
 
 //////////////////////////////////////////////////////////////////
 /* void lnn_incr (lnn_t n); */

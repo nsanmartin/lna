@@ -1,19 +1,7 @@
-#include "digit.h"
+#include "../digit.h"
+#include "../arit.h"
 #include <stdio.h>
 
-
-//void digit_clear (struct digit * d) { free ( d ); }
-
-/* struct digit * digit_new_zero () */
-/* { */
-/*     struct digit * res = malloc(sizeof(struct digit)); */
-/*     if (!res) { */
-/*         fprintf (stderr, "Not enough memory.\n"); */
-/*         exit (1); */
-/*     } */
-/*     res -> num = (T)0; res -> next = res -> prev = 0x0; */
-/*     return res; */
-/* }; */
 
 struct digit * digits_new (T num)
 {
@@ -27,7 +15,21 @@ struct digit * digits_new (T num)
     return res;
 }
 
-struct digit * digits_new_list_arr (T num[], unsigned l)
+
+struct digit * digits_new_decimal_string (char * s)
+{
+    struct digit * res = digits_new (0);
+    while(*s >= '0' && *s <= '9') {
+        struct digit * tmp = res;
+        digits_set_mul_T ( res, (T) 10 );
+        digits_set_add_T ( res, (T) *s - '0');
+        s++;
+    }
+    return res;
+}
+
+
+struct digit * digits_new_array (T num[], unsigned l)
 {
     struct digit * res; struct digit * next_tmp, ** p = &res;
     unsigned i = 0;
@@ -59,17 +61,11 @@ struct digit * digits_new_list_arr_invertido (T num[], unsigned l)
     return res;
 }
 
-/* struct digit * digits_copy (struct digit const * n) */
-/* { */
-/*     return digits_new ( n -> num ); */
-/* } */
-
 T digits_copy (struct digit ** dest, struct digit const * src)
 {
     T res = 0; unsigned first = 0;
     struct digit * prev, * next;
     while ( src ) {
-        
         next = src -> next;
         * dest = digits_new ( src -> num );
         if ( first++ > 0 )
@@ -134,7 +130,6 @@ void digits_map_fwd (struct digit *head,
 	p = q;
     }
 }
-
 
 void free_digit (struct digit * d) { free ( d ); }
 

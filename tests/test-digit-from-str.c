@@ -9,32 +9,16 @@ void print_arr (T const * a, unsigned l);
 
 int main(int argc, char ** argv)
 {
-    if (argc == 1)
-    {
-        puts("Usage: prog NUMBER [NUMBER ...]\n");
-        return 0;
+    if (argc != 2) {
+        puts("Usage: prog NUMBER\n");return 0;
     }
 
-    T * x =  malloc (sizeof(T) * (argc - 1));
+    char * input = argv[1];
+    
+    struct digit * d = digits_new_decimal_string( input );
 
-    int i;
-    printf("argc: %d\n",argc);
-
-    for (i = 0; i < argc - 1; i++) {
-        x[i] = atoll(argv[i+1]);
-    }
-
-
-    struct digit * d = digits_new_array(x, argc - 1);
-
-    struct digit * e;
-    T len = digits_copy (&e, d);
-
-    printf("d es %p", e);
-    print ("d: ", e);
-
-    digits_set_mul_T (e, 16);
-    print ("e * 16: ", e);
+    printf("d es %p", d);
+    print ("d: ", d);
     
     
     return 0;
