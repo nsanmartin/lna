@@ -37,7 +37,7 @@ def main(argv):
     print("0x%x" % (l2num(n))) 
     print("0x%x" % (l2num(m)))
     print("0x%x" % (l2num(n) + l2num(m)))
-    cmd = "../arradd.exe " + " ".join(str(x) for x in nums)
+    cmd = "../a.out " + " ".join(str(x) for x in nums)
     call(cmd, shell=True)
     
 if __name__ == "__main__":

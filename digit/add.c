@@ -44,7 +44,7 @@ struct digit * digits_add (struct digit const * x, struct digit const *y)
     cin = cout;
     x = x -> next; y = y -> next;
     while (x && y) {
-        sumador (x -> num, y -> num, 0, &suma, &cout );
+	sumador (x -> num, y -> num, cin, &suma, &cout );
         r -> next = digits_new (suma);
         cin = cout;
         r -> next -> prev = r;
