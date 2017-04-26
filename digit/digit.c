@@ -3,6 +3,17 @@
 #include <stdio.h>
 #include "../print.h"
 
+void digits_new_next (struct digit * prev, T num)
+{
+    struct digit * new = malloc(sizeof(struct digit));
+    if (!new) { fprintf (stderr, "Not enough memory.\n"); exit (1); }
+    new -> num = num;
+    new -> next = 0x0;
+    new -> prev = prev;
+    prev -> next = new;
+}
+
+
 struct digit * digits_new (T num)
 {
     struct digit * res = malloc(sizeof(struct digit));

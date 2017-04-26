@@ -13,6 +13,9 @@ struct digit {
     struct digit * prev;
 };
 
+
+void digits_new_next (struct digit * prev, T num);
+
 struct digit * digits_new (T num);
 struct digit * digits_new_array (T num[], unsigned l);
 struct digit * digits_new_decimal_string (char const * s);
@@ -28,7 +31,9 @@ void digits_loop_bwd (struct digit * last, void (*f)(struct digit *));
 /*                          void * res); */
 
 void digits_clear(struct digit **  lista );
+char * digits_get_str_hex (struct digit * d);
 
+T digits_len (struct digit * n);
 
 
 #endif

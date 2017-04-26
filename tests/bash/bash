@@ -1,0 +1,11 @@
+  /cygdrive/c/Users/nsanmartin/lna/tests/bash:
+  total used in directory 27 available 126872036
+  drwxr-xr-x+ 1 nsanmartin Usuarios del dominio   0 abr. 26 11:46 .
+  drwxr-xr-x+ 1 nsanmartin Usuarios del dominio   0 abr. 26 11:45 ..
+  -rw-r--r--+ 1 nsanmartin Usuarios del dominio 503 mar.  2 09:42 add-test.sh
+  -rw-r--r--+ 1 nsanmartin Usuarios del dominio 264 mar.  2 09:42 add-test-time.sh
+  -rwxr-xr-x+ 1 nsanmartin Usuarios del dominio 262 abr. 26 10:54 rand-arr.sh
+  -rwxr-xr-x+ 1 nsanmartin Usuarios del dominio 151 abr. 26 11:46 randT.sh
+  -rw-r--r--+ 1 nsanmartin Usuarios del dominio 143 abr. 26 11:43 randT.sh~
+  -rw-r--r--+ 1 nsanmartin Usuarios del dominio 339 abr. 26 11:04 test-add.sh
+  -rw-r--r--+ 1 nsanmartin Usuarios del dominio 130 abr. 26 11:53 test-add-T.sh

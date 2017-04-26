@@ -12,20 +12,18 @@
 
 int main(int argc, char ** argv)
 {
-    if (argc != 3) { puts("Usage: prog NUMBER\n"); return 0; }
+    if (argc != 2) { puts("Usage: prog NUMBER\n"); return 0; }
 
     T x, y;
     errno = 0;
     char * tail;
     x = strtoul (argv[1], &tail, 10);
-    if (errno) { puts("primer numero demasiado grande"); return 0; }
-    y = strtoul (argv[2], &tail, 10);
-    if (errno) { puts("segundo numero demasiado grande"); return 0; }
+    if (errno) { puts("Numero demasiado grande"); return 0; }
 
     struct digit * p;
     p = digits_new (x);
-    digits_set_add_T (p, y);
-    digits_print_hex(p);
+    char * s = digits_get_str_hex (p);
+    puts(s);
     
     return 0;
 }
