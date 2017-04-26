@@ -1,5 +1,5 @@
 /* Compile with */
-/* gcc -o add_example add_example.c -lgmp -lm */
+/* gcc -o add-gmp add-gmp.c -lgmp -lm */
 
 #include <stdio.h>			/* for printf */
 #include <gmp.h>

@@ -26,10 +26,6 @@ int main(int argc, char ** argv)
     struct digit * d = digits_new_array(x, coma - 1);
     struct digit * e = digits_new_array(x + coma, argc - 1 - coma);
 
-    puts ("\tlna\n\t===");
-    digits_print_hex(d);
-    digits_print_hex(e);
-
     struct digit * sum = digits_add (d, e);
     digits_print_hex(sum);
     return 0;

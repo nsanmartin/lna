@@ -2,6 +2,7 @@
 #*
 *#
 *.out
+*.o
 *.exe
 .temp
 TAGS

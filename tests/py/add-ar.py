@@ -18,7 +18,11 @@ def l2num(lista):
     longitud = long (len(lista))
     res = 0
     for x in lista:
-        res = res + ((2 ** 64) ** (longitud - 1)) * long(x)
+        if long(x) < 0:
+            num = 2 ** 64  + long(x)
+        else:
+            num = long(x)
+        res = res + ((2 ** 64) ** (longitud - 1)) * num
         longitud = longitud - 1
     return res
                            
@@ -26,7 +30,6 @@ def l2num(lista):
 def main(argv):
     try:
         nums = argv[1:]
-        print("\tpy\n\t")
     except getopt.GetoptError as err:
         print(str(err))  # will print something like "option -a not recognized"
         sys.exit(2)
@@ -34,11 +37,12 @@ def main(argv):
     n = []
     m = []
     foo (nums, n, m)
-    print("0x%x" % (l2num(n))) 
-    print("0x%x" % (l2num(m)))
+    # n = l2num(n)
+    # m = l2num(m)
+ 
     print("0x%x" % (l2num(n) + l2num(m)))
-    cmd = "../a.out " + " ".join(str(x) for x in nums)
-    call(cmd, shell=True)
+    ##    cmd = "../a.out " + " ".join(str(x) for x in nums)
+    ##call(cmd, shell=True)
     
 if __name__ == "__main__":
     if ( len(sys.argv) < 4 ):
