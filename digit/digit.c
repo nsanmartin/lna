@@ -1,6 +1,7 @@
 #include "../digit.h"
 #include "../arit.h"
 #include <stdio.h>
+#include <ctype.h>
 #include "../print.h"
 
 void digits_new_next (struct digit * prev, T num)
@@ -27,19 +28,74 @@ struct digit * digits_new (T num)
 }
 
 
-struct digit * digits_new_decimal_string (char const * s)
+int digits_init_set_decimal_string (struct digit ** d, char const * s)
 {
-    struct digit * res = digits_new (0);
-
-    while(*s >= '0' && *s <= '9') {
-        T dec_dig = ((T) *s - '0');
-
-        digits_set_mul_T ( res, (T) 10 );
-        digits_set_add_T ( res, dec_dig );
+    T decimal_digit = 0;
+    struct digit * newd = digits_new (decimal_digit);
+    *d = newd;
+    if (!s) 
+        return -1;
+    
+    while (isspace (*s))
         s++;
 
+    if (*s < '0' || '9' < *s)
+        return -1;
+
+    decimal_digit = ((T) *s - '0');
+    s++;
+    newd -> num = decimal_digit;
+    struct digit * dd, *tmp2, *suma;
+    while(('0' <= *s && *s <= '9') || *s == ' ' ) {
+        while (isspace (*s))
+            s++;
+        
+        digits_set_mul_T ( newd, (T) 10 );
+        dd = digits_new ((T) *s - '0');
+
+        tmp2 = newd;
+        
+        suma = digits_add (newd, dd);
+
+        newd = suma;
+        
+        /* digits_clear (&tmp2); */
+        /* digits_clear (&dd); */
+        //digits_set_add_T ( newd, decimal_digit );
+        s++;
     }
-    return res;
+    return *s == '\0' ?
+        0 : -1;
+}
+
+int digits_init_set_decimal_string___ (struct digit ** d, char const * s)
+{
+    T decimal_digit = 0;
+    struct digit * newd = digits_new (decimal_digit);
+    *d = newd;
+    if (!s) 
+        return -1;
+    
+    while (isspace (*s))
+        s++;
+
+    if (*s < '0' || '9' < *s)
+        return -1;
+
+    decimal_digit = ((T) *s - '0');
+    s++;
+    newd -> num = decimal_digit;
+    
+    while(('0' <= *s && *s <= '9') || *s == ' ' ) {
+        while (isspace (*s))
+            s++;
+        decimal_digit = ((T) *s - '0');
+        digits_set_mul_T ( newd, (T) 10 );
+        digits_set_add_T ( newd, decimal_digit );
+        s++;
+    }
+    return *s == '\0' ?
+        0 : -1;
 }
 
 

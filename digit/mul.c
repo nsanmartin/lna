@@ -1,9 +1,34 @@
 #include "../arit.h"
 #include <stdio.h>
 
-void multiplicador (const T x, const T y, T * lbits, T * rbits)
+void multiplicador (T const x,T const y, T * lbits, T * rbits)
 {
-    *lbits = *rbits = 0;
+    *rbits = x * y;
+    *lbits = (T)0;
+
+    T rb, suma, carry, carry_total;
+    carry_total = 0;
+    if ( !x || !y )
+        return;
+
+    struct digits * rb = digits_new (y & 1 ? x : 0);
+
+    for (int i = 1; i < BITS_OF_T; i++) {
+        if ( 1 & (y >> i) ) {
+            (*lbits) += x >> BITS_OF_T - i;
+            digits_set_add (rb, x << i);
+        }
+     }
+    *lbits = suma;
+        
+}
+
+
+
+
+void multiplicador__ (const T x, const T y, T * lbits, T * rbits)
+{
+  *lbits = *rbits = (T)0;
     if ( !x || !y )
         return;
     else if (1 & y)

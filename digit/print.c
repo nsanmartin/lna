@@ -18,7 +18,7 @@ void digits_print_hex(struct digit * n)
 {
     // debug
     if (!n) {
-        fprintf(stderr, "No puedo printear 0x0");
+        fprintf(stderr, "digits_print_hex: error: parametro nulo");
         exit(1);
     }
     while(n -> next)
