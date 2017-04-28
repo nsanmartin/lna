@@ -1,26 +1,43 @@
 #include "../arit.h"
 #include <stdio.h>
 
-void multiplicador (T const x,T const y, T * lbits, T * rbits)
+#define nth_bit(word, n) 1 & ((word) >> (n))
+// testear con 15 * 15
+void multiplicador (T const x,T const y, T * left, T * right)
 {
-    *rbits = x * y;
-    *lbits = (T)0;
+    if (!x || !y) {
+	* left = * right = 0;
+	return;
+    }
+    T suma, carry;
+    * left = 0;
+    * right = 1 & y ? x : 0;
+    T n = 1;
+//    printf("lf 0:\t 0\trg 0:\t %x\tacu %x\n", *right,*right );
+    while (y >> n && n < BITS_OF_T) {
+	
+	sumador (* right, nth_bit(y, n) ? x << n : 0, 0, &suma, &carry);
+	
+	* left += nth_bit(y, n) 
+	    ?  x >> (BITS_OF_T - n) 
+	    : 0;
 
-    T rb, suma, carry, carry_total;
-    carry_total = 0;
-    if ( !x || !y )
-        return;
+	* left += carry;
+	* right = suma;
 
-    struct digits * rb = digits_new (y & 1 ? x : 0);
+	/* printf("lf %d:\t %x\t",n, (x >> (BITS_OF_T - n)) ); */
+	/* printf("rg %d:\t %x\tacu r: %x\n",n, (x << n), *right ); */
 
-    for (int i = 1; i < BITS_OF_T; i++) {
-        if ( 1 & (y >> i) ) {
-            (*lbits) += x >> BITS_OF_T - i;
-            digits_set_add (rb, x << i);
-        }
-     }
-    *lbits = suma;
-        
+//	printf("rigth in bit %d: %x\n", n, (*right- suma) & 15);
+
+
+	n++;
+    }
+    /* if ( x * y != * right) { */
+    /* 	fprintf (stderr, "error en multiplicador?.\nx * y ==  '%x' pero *right == '%x'\n", */
+    /* 		 x * y, * right); */
+    /* 	exit(1); */
+    /* } */
 }
 
 
