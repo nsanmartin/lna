@@ -50,11 +50,24 @@ int main(int argc, char ** argv)
     
     struct digit * d = digits_new_array(x, dot - 1);
     mpz_t z;
+
     gmp_from_arr (z, x, dot - 1);
 
-    char * s = digits_get_str_hex (d);
-    //digits_print_hex(d);
-    gmp_printf ("lna: %s\ngmp: %Zx\n",s, z);
 
+
+    mpz_mul_ui (z, z, y);
+    digits_set_mul_T (d, y);
+
+
+    gmp_lna_cmp (z, d);
+    
+    /*
+    char * s = digits_get_str_hex (d);
+    char * t = mpz_get_str (NULL, 16, z);
+    gmp_printf ("lna: %s\ngmp: %Zx\n",s, z);
+    */
+    
+    
+    
     return 0;
 }

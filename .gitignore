@@ -8,3 +8,4 @@
 TAGS
 *.test
 *stackdump
+tmp*
