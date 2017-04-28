@@ -7,12 +7,13 @@
 #define endl printf("\n");
 
 
-#if 1
+#if 0
 typedef unsigned char T;
 #define PRINT_NUM_DEC(num) printf( CHAR_PATTERN, (num))
 #define PRINT_NUM_HEX(num) printf( CHAR_HEX_PATTERN, (num))
 #define PATTERN "%d"
 #define hexPATTERN "%x"
+#define hexPATTERNPADDING "%02llx"
 #define FORMAT "%d"
 #define hexFORMAT "%x"
 
@@ -22,6 +23,8 @@ typedef unsigned T;
 #define PRINT_NUM_HEX(num) printf( UNSIGNED_HEX_PATTERN, (num))
 #define PATTERN "%d"
 #define hexPATTERN "%x"
+#define hexPATTERNPADDING "%08llx"
+
 #define FORMAT "%d"
 #define hexFORMAT "%x"
 
@@ -33,6 +36,7 @@ typedef unsigned long long T;
 #define PRINT_NUM_HEX(num) printf( LONG_HEX_PATTERN, (num))
 #define PATTERN "%lld"
 #define hexPATTERN "%llx"
+#define hexPATTERNPADDING "%016llx"
 #define FORMAT "%lld"
 #define hexFORMAT "%llx"
 

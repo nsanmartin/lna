@@ -28,20 +28,25 @@ void digits_set_mul_T (struct digit * ds, T const x)
 {
     T lb, rb;
     T mulcarry = 0; T addcarry;
-    T num;
+    T sum;
     struct digit * prev;
     for ( ; ds ; ds = ds -> next)
     {
         multiplicador (ds -> num, x, &lb, &rb);
-        sumador (mulcarry, rb, 0, &num, &addcarry);
+        sumador (mulcarry, rb, 0, &sum, &addcarry);
+        
+        ds -> num = sum;
+
+
+        mulcarry = lb;
+
         if (addcarry) {
             fprintf(stderr, "error en digit_set_mul_t, revisarla\n");
             exit(1);
         }
-        mulcarry = lb;
-        ds -> num = num;
         prev = ds;
     }
+
     if (mulcarry) {
         prev -> next = digits_new (mulcarry);
         prev -> next -> prev = prev;

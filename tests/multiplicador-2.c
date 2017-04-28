@@ -25,26 +25,18 @@ int main(int argc, char ** argv)
     
       for (x = 255, y = 255; x > 0 && y > 0; x--, y--) {
         multiplicador (x, y, &lb, &rb);
-
-
-    
         mpz_init_set_ui (producto, x);
         mpz_mul_ui (producto, producto, y);
 
         mpz_mod (right, producto, M);
         mpz_fdiv_q (left, producto, M);
 
-      //      printf("bits: %d\t \n~0:\t\t %llx\n", bits, ~(T)0);
-      printf("\nx: %x, y: %x\t", x, y);
-      //      gmp_printf ("2^64:\t\t%Zx\n",M);
+        printf("\nx: %x, y: %x\t", x, y);
 
-      gmp_printf ("producto: %Zx ", producto);
+        gmp_printf ("producto: %Zx ", producto);
 
-      /* gmp_printf ("right\t gmp:\t%Zx\tlna: %llx\t c: %llx\n", */
-      /*             right, rb,(T) ((T)x*(T)y)); */
-
-      gmp_printf ("left\t gmp:\t%Zx\t\tlna: %x",
-                  left, lb);
-    }
-    return 0;
+        gmp_printf ("left\t gmp:\t%Zx\t\tlna: %x",
+                    left, lb);
+      }
+      return 0;
 }
