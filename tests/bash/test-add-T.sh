@@ -17,22 +17,22 @@ function iguales {
 n=$(( $RANDOM * $RANDOM * $RANDOM ))
 m=$(( $RANDOM * $RANDOM * $RANDOM ))
 
-lna=$( ../add-T.exe $n $m)
-gmp=$( ../gmp/add-gmp.exe $n $m )
+lna=$( ../add-TT $n $m)
+gmp=$( ../gmp/add-gmp $n $m )
 
 iguales ${lna} ${gmp}
 
-for i in {1..19}
+for i in {1..199}
 do
-    for j in {1..19}
+    for j in {1..199}
     do
         n=$(head /dev/urandom | tr -cd '0-9' | head -c $i)
         m=$(head /dev/urandom | tr -cd '0-9' | head -c $j)
         
-        lna=$( ../add-T.exe $n $m)
-        gmp=$( ../gmp/add-gmp.exe $n $m )
+        # lna=$( ../add-TT $n $m)
+        # gmp=$( ../gmp/add-gmp $n $m )
 
-        iguales ${lna} ${gmp}
+#        iguales ${lna} ${gmp}
     done
 done
 

@@ -16,6 +16,7 @@ void gmp_lna_cmp (mpz_t mpz, struct digit * ds)
       fprintf(stderr, "gmp: %s\n", t);
       fprintf (stderr, "error\n");
       printf ("error\n");
+      exit(1);
     }
 }
 

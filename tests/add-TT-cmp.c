@@ -1,9 +1,11 @@
 #include <stdio.h>
-//#include <gmp.h>
+#include <gmp.h>
 #include "../print.h"
 #include "../digit.h"
 #include "../arit.h"
 #include <errno.h>
+#include "tests.h"
+
 /* compilar con:
  * gcc ../digit/*.c suma.c -o suma -lgmp -lm
  *
@@ -22,10 +24,24 @@ int main(int argc, char ** argv)
     y = strtoul (argv[2], &tail, 10);
     if (errno) { puts("segundo numero demasiado grande"); return 0; }
 
+
     struct digit * p;
     p = digits_new (x);
+
+    /*
+    ** testing:
+    **    digits_set_add_T
+    **     |
+    **     V
+    */
+    
     digits_set_add_T (p, y);
-    digits_print_hex(p);
+
+
+    mpz_t z;
+    mpz_init_set_ui (z, x);
+    mpz_add_ui (z,z, y);
+    gmp_lna_cmp (z, p);
     
     return 0;
 }
