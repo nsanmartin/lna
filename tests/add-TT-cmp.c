@@ -4,7 +4,7 @@
 #include "../digit.h"
 #include "../arit.h"
 #include <errno.h>
-#include "tests.h"
+#include "aux-tests.h"
 
 /* compilar con:
  * gcc ../digit/*.c suma.c -o suma -lgmp -lm
