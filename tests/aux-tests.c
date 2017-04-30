@@ -12,10 +12,9 @@ void gmp_lna_cmp (mpz_t mpz, struct digit * ds)
       printf ("ok\n");
     }
     else {
+      fprintf (stderr, "error en test\n");
       fprintf(stderr, "lna: %s\n", s);
       fprintf(stderr, "gmp: %s\n", t);
-      fprintf (stderr, "error\n");
-      printf ("error\n");
       exit(1);
     }
 }

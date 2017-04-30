@@ -49,19 +49,9 @@ int digits_init_set_decimal_string (struct digit ** d, char const * s)
     while(('0' <= *s && *s <= '9') || *s == ' ' ) {
         while (isspace (*s))
             s++;
-        
+
         digits_set_mul_T ( newd, (T) 10 );
-        dd = digits_new ((T) *s - '0');
-
-        tmp2 = newd;
-        
-        suma = digits_add (newd, dd);
-
-        newd = suma;
-        
-        /* digits_clear (&tmp2); */
-        /* digits_clear (&dd); */
-        //digits_set_add_T ( newd, decimal_digit );
+        digits_set_add_T ( newd, ((T) *s - '0'));
         s++;
     }
     return *s == '\0' ?
