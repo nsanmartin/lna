@@ -2,3 +2,6 @@
 while [[ $? ]]; do printf $((i++)): && . test-mul-T-d-arr.sh ; done
 ## fun: digits_set_add_T
 while [[ $? ]]; do . test-addtt.sh;done 2> errors 
+
+## fun from-str
+while [[ $? ]]; do printf "$((i++)): "; ../fromstr $(. large-rand.sh); done

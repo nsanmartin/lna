@@ -6,9 +6,8 @@ void gmp_lna_cmp (mpz_t mpz, struct digit * ds)
     
     t = mpz_get_str (NULL, 16, mpz);
     s = digits_get_str_hex (ds);
-
     
-    if ( strcmp ( s, t ) == 0) {
+    if ( strcmp ( s, t )  == 0) {
       printf ("ok\n");
     }
     else {
