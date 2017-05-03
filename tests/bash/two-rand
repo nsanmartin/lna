@@ -1,0 +1,3 @@
+cat /dev/urandom | tr -cd '0-9' | head -c $1
+printf " "
+cat /dev/urandom | tr -cd '0-9' | head -c $1
