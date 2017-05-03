@@ -7,7 +7,7 @@ void digits_incr (struct digit * n);
 void digits_decr (struct digit * n);
 struct digit * digits_add (struct digit const * x, struct digit const *y);
 
-void sumador (const T x, const T y, const T carry_in, T * sum, T * carry);
+void sumador (const T x, const T y, T * sum, T * carry);
 void digits_set_mul_T (struct digit * ds, T const x);
 void digits_set_add_T (struct digit * ds, T const y);
 void multiplicador (const T x, const T y, T * lbits, T * rbits);

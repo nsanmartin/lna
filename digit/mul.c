@@ -14,7 +14,7 @@ void multiplicador (T const x,T const y, T * left, T * right)
     T n = 1;
 
     while (y >> n && n < BITS_OF_T) {
-	sumador (* right, nth_bit(y, n) ? x << n : 0, 0, &suma, &carry);
+	sumador (* right, nth_bit(y, n) ? x << n : 0, &suma, &carry);
 	* left += nth_bit(y, n) ?
           x >> (BITS_OF_T - n)  :
           0;
@@ -33,7 +33,7 @@ void digits_set_mul_T (struct digit * ds, T const x)
     for ( ; ds ; ds = ds -> next)
     {
         multiplicador (ds -> num, x, &lb, &rb);
-        sumador (mulcarry, rb, 0, &sum, &addcarry);
+        sumador (mulcarry, rb, &sum, &addcarry);
         
         ds -> num = sum;
 

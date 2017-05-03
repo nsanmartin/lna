@@ -7,9 +7,9 @@
 
 int main(int argc, char ** argv)
 {
-    if (argc != 4) { puts("Usage: prog NUMBER NUMBER NUMBER\n"); return 0; }
+    if (argc != 3) { puts("Usage: prog NUMBER NUMBER NUMBER\n"); return 0; }
 
-    T x, y, cin, sum, carry;
+    T x, y, sum, carry;
 
     errno = 0;
     char * tail;
@@ -17,14 +17,12 @@ int main(int argc, char ** argv)
     if (errno) { puts("primer numero demasiado grande"); return 0; }
     y = strtoul (argv[2], &tail, 10);
     if (errno) { puts("segundo numero demasiado grande"); return 0; }
-    cin = strtoul (argv[3], &tail, 10);
-    if (errno) { puts("segundo numero demasiado grande"); return 0; }
 
     /*
     **  | el sumador
     **  V
     */
-    sumador (x, y, cin, &sum, &carry);
+    sumador (x, y, &sum, &carry);
 
     T bits = BITS_OF_T;
     
