@@ -1,4 +1,4 @@
-#include "../arit.h"
+#include <arit.h>
 #include <stdio.h>
 
 void digits_incr (struct digit * d)

@@ -1,4 +1,4 @@
-#include "aux-tests.h"
+#include <aux-tests.h>
 #include <gmp.h>
 void gmp_lna_cmp (mpz_t mpz, struct digit * ds)
 {

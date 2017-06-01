@@ -1,4 +1,4 @@
-#include "../digit.h"
+#include <digit.h>
 #include <stdio.h>
 
 char * digits_get_str_hex (struct digit * d)

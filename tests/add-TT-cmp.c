@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <gmp.h>
-#include "../print.h"
-#include "../digit.h"
-#include "../arit.h"
+#include <print.h>
+#include <digit.h>
+#include <arit.h>
 #include <errno.h>
-#include "aux-tests.h"
+#include <aux-tests.h>
 
 /* compilar con:
  * gcc ../digit/*.c suma.c -o suma -lgmp -lm

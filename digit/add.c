@@ -1,4 +1,4 @@
-#include "../arit.h"
+#include <arit.h>
 #include <stdio.h>
 
 void sumador (const T x, const T y, T * sum, T * carry)

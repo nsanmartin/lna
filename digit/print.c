@@ -1,4 +1,4 @@
-#include "../print.h"
+#include <print.h>
 
 void digit_node_print_dec_str (struct digit * n);
 void digit_node_print_hex (struct digit * n);

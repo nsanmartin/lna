@@ -1,8 +1,8 @@
-#include "../digit.h"
-#include "../arit.h"
+#include <digit.h>
+#include <arit.h>
 #include <stdio.h>
 #include <ctype.h>
-#include "../print.h"
+#include <print.h>
 
 void digits_new_next (struct digit * prev, T num)
 {

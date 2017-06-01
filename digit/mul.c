@@ -1,4 +1,4 @@
-#include "../arit.h"
+#include <arit.h>
 #include <stdio.h>
 
 #define nth_bit(word, n) 1 & ((word) >> (n))

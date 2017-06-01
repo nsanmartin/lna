@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <gmp.h>
-#include "../print.h"
-#include "../digit.h"
-#include "../arit.h"
+#include <print.h>
+#include <digit.h>
+#include <arit.h>
 #include <errno.h>
 /* compilar con:
  * gcc ../digit/*.c suma.c -o suma -lgmp -lm
