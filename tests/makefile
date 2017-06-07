@@ -5,9 +5,10 @@ OBJECTS = ../digit/add.o ../digit/decr.o ../digit/incr.o \
 CFLAGS = -lgmp -lm -I../include
 
 add : $(OBJECTS)
-	gcc  $(OBJECTS) $(CFLAGS)  add-TT.c -o add
+	gcc  $(OBJECTS) -I. -I../include add-dd.c aux-tests.c -o add \
+	-lgmp -lm
 
-add-cmp : $(OBJECTS) 
+addTT-cmp : $(OBJECTS) 
 	gcc  $(OBJECTS) -I. -I../include add-TT-cmp.c aux-tests.c \
 	-o add-cmp -lgmp -lm
 

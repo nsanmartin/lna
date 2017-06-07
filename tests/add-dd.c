@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <gmp.h>
 #include <string.h>
-#include "../print.h"
-#include "../digit.h"
-#include "../arit.h"
-#include "aux-tests.h"
+#include <print.h>
+#include <digit.h>
+#include <arit.h>
+#include <aux-tests.h>
 /* compilar con:
  * gcc ../digit/*.c from-str.c -o from-str -lgmp -lm
  *
