@@ -1,5 +1,5 @@
 OBJECTS = ../digit/add.o ../digit/decr.o ../digit/incr.o \
-	../digit/malloc.o ../digit/mul.o ../digit/pow.o ../digit/print.o \
+	../digit/mem.o ../digit/mul.o ../digit/pow.o ../digit/print.o \
 	../digit/string.o
 
 CFLAGS = -lgmp -lm -I../include
