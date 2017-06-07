@@ -24,7 +24,7 @@ void multiplicador (T const x,T const y, T * left, T * right)
     }
 }
 
-void digits_set_mul_T (struct digit * ds, T const x)
+void digits_set_mul_ui (struct digit * ds, T const x)
 {
     T lb, rb;
     T mulcarry = 0; T addcarry;
@@ -34,14 +34,14 @@ void digits_set_mul_T (struct digit * ds, T const x)
     {
         multiplicador (ds -> num, x, &lb, &rb);
         sumador (mulcarry, rb, &sum, &addcarry);
-        
+
+	
         ds -> num = sum;
 
+	sumador (addcarry, lb, &mulcarry, &sum);
 
-        mulcarry = lb;
-
-        if (addcarry) {
-            fprintf(stderr, "error en digit_set_mul_t, revisarla\n");
+        if (sum) {
+            fprintf(stderr, "error en digit_set_mul_ui, revisarla\n");
             exit(1);
         }
         prev = ds;
@@ -51,4 +51,52 @@ void digits_set_mul_T (struct digit * ds, T const x)
         prev -> next = digits_new (mulcarry);
         prev -> next -> prev = prev;
     }
+}
+#define DEB(str, d) \
+    printf((str)); digits_print_hex ((d));
+#include <print.h>
+struct digit * digits_mul (struct digit const * x, struct digit const * y)
+{
+    struct digit * r = digits_new(0);
+    struct digit ** res = &r;
+    struct digit * tmp;
+
+    unsigned veces = 0;
+    /* DEB( "x: ", x); */
+    /* DEB( "y: ", y); */
+    
+    while ( x ) {
+	digits_copy (&tmp, y);
+	//DEB("tmp (copy y): ", tmp);
+	digits_set_mul_ui (tmp, x -> num);
+	//DEB("tmp (post set mul): ", tmp);
+	digits_set_add (r, tmp);
+        digits_clear (&tmp);
+	veces++;
+	if ( x -> next == 0x0) {
+	    break;
+	}
+        if ( r -> next == 0x0 ) {
+	    puts ("nuevo");
+	    r -> next = digits_new(0);
+	    r -> next -> prev = r ;
+	}
+        r = r -> next;
+        x = x -> next;
+    }
+    //    printf ("veces: %u res (post): ", veces);
+    //digits_print_hex (*res);
+
+    return *res;
+    /* struct digit * r = digits_new_(0);  digit res = r; */
+    /* while ( x ) { */
+    /*     digit tmp = digit_mul_T ( y, x -> num ); */
+    /*     digit_set_add ( r, tmp ); */
+    /*     digit_clear (&tmp); */
+    /*     if ( x -> next == 0x0) break; */
+    /*     if ( r -> next == 0x0 ) r -> next = digit_new_zero(); */
+    /*     r = r -> next; */
+    /*     x = x -> next; */
+    /* } */
+    /* return res; */
 }

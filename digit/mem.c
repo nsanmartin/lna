@@ -50,8 +50,8 @@ int digits_init_set_decimal_string (struct digit ** d, char const * s)
         while (isspace (*s))
             s++;
 
-        digits_set_mul_T ( newd, (T) 10 );
-        digits_set_add_T ( newd, ((T) *s - '0'));
+        digits_set_mul_ui ( newd, (T) 10 );
+        digits_set_add_ui ( newd, ((T) *s - '0'));
         s++;
     }
     return *s == '\0' ?
@@ -80,8 +80,8 @@ int digits_init_set_decimal_string___ (struct digit ** d, char const * s)
         while (isspace (*s))
             s++;
         decimal_digit = ((T) *s - '0');
-        digits_set_mul_T ( newd, (T) 10 );
-        digits_set_add_T ( newd, decimal_digit );
+        digits_set_mul_ui ( newd, (T) 10 );
+        digits_set_add_ui ( newd, decimal_digit );
         s++;
     }
     return *s == '\0' ?

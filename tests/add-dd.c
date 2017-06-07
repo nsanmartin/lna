@@ -5,10 +5,6 @@
 #include <digit.h>
 #include <arit.h>
 #include <aux-tests.h>
-/* compilar con:
- * gcc ../digit/*.c from-str.c -o from-str -lgmp -lm
- *
- */
 
 
 int main(int argc, char ** argv)

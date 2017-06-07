@@ -14,7 +14,7 @@ void digit_node_print_hex (struct digit * n)
     PRINT_NUM_HEX ( n -> num);
 }
 
-void digits_print_hex(struct digit * n)
+void digits_print_hex(struct digit const * n)
 {
     // debug
     if (!n) {
