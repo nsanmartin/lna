@@ -60,24 +60,20 @@ struct digit * digits_mul (struct digit const * x, struct digit const * y)
     struct digit * r = digits_new(0);
     struct digit ** res = &r;
     struct digit * tmp;
-
-    unsigned veces = 0;
-    /* DEB( "x: ", x); */
-    /* DEB( "y: ", y); */
-    
     while ( x ) {
+        // set tmp = copy(y)
 	digits_copy (&tmp, y);
-	//DEB("tmp (copy y): ", tmp);
+        // set tmp *= x_i
 	digits_set_mul_ui (tmp, x -> num);
-	//DEB("tmp (post set mul): ", tmp);
+
+        // set r += tmp
 	digits_set_add (r, tmp);
+        // clear tmp
         digits_clear (&tmp);
-	veces++;
-	if ( x -> next == 0x0) {
+
+	if ( x -> next == 0x0) 
 	    break;
-	}
         if ( r -> next == 0x0 ) {
-	    puts ("nuevo");
 	    r -> next = digits_new(0);
 	    r -> next -> prev = r ;
 	}
@@ -88,15 +84,4 @@ struct digit * digits_mul (struct digit const * x, struct digit const * y)
     //digits_print_hex (*res);
 
     return *res;
-    /* struct digit * r = digits_new_(0);  digit res = r; */
-    /* while ( x ) { */
-    /*     digit tmp = digit_mul_T ( y, x -> num ); */
-    /*     digit_set_add ( r, tmp ); */
-    /*     digit_clear (&tmp); */
-    /*     if ( x -> next == 0x0) break; */
-    /*     if ( r -> next == 0x0 ) r -> next = digit_new_zero(); */
-    /*     r = r -> next; */
-    /*     x = x -> next; */
-    /* } */
-    /* return res; */
 }

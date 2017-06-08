@@ -43,12 +43,5 @@ int main(int argc, char ** argv)
     lna_mul = digits_mul (d, e);
     mpz_mul (mpz_mul_res, w,z);
 
-    /* mpz_init_set_str ( cpy_lna, */
-    /*                    digits_get_str_hex(lna_sum), */
-    /*                    16); */
-
-    /* mpz_sub (mpz_diff, mpz_sum, cpy_lna); */
-    /* gmp_printf ("diff: %Zx\n", mpz_diff); */
-
     gmp_lna_cmp (mpz_mul_res, lna_mul);
 }

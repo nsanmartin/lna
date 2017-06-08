@@ -26,7 +26,16 @@ int main(int argc, char ** argv)
     */
 
     digits_copy (&copia, d);
-    digits_print_hex (d);
-    digits_print_hex (copia);
+    char * s, *t; 
+    s = digits_get_str_hex (d);
+    t = digits_get_str_hex (copia);
+
+    if (strcmp(s,t) != 0){
+      puts("error en copy");
+      puts(s);puts(t);
+      exit(1);
+    } else
+      puts("ok");
+    
 
 }
