@@ -18,3 +18,5 @@ void gmp_lna_cmp (mpz_t mpz, struct digit * ds);
 void gmp_M (mpz_t z);
 void gmp_from_arr (mpz_t z, T * arr, T len);
 
+char * rnd_dec_str (unsigned n_digits);
+struct digit * digits_rnd (FILE * urand, T size);

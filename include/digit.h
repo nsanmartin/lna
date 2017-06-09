@@ -15,6 +15,7 @@ struct digit {
 
 
 void digits_new_next (struct digit * prev, T num);
+void digits_new_next (struct digit * prev, T num);
 
 
 void digits_init_array (struct digit ** d, T const * a, unsigned len);
@@ -22,6 +23,7 @@ void digits_init_array (struct digit ** d, T const * a, unsigned len);
 struct digit * digits_new (T num);
 struct digit * digits_new_array (T num[], unsigned l);
 int digits_init_set_decimal_string (struct digit ** d, char const * s);
+int digits_init_set_decimal_string___ (struct digit ** d, char const * s);
 
 T digits_copy (struct digit ** dest, struct digit const * src);
 T digits_list_len (struct digit * n);
