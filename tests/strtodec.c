@@ -7,7 +7,7 @@
 #include <aux-tests.h>
 #include <time.h>
 
-//#define VERBOSE
+#define VERBOSE
 #ifdef VERBOSE
 #define tiempo_transcurrido(DESDE, HASTA, MSG)	\
     do { \
@@ -45,18 +45,24 @@ int main(int argc, char ** argv)
     unsigned char c;
     char * number_str = rnd_dec_str (ndigits);
     fclose(urand);
-
+    
     tiempo_transcurrido (start, end, "Ya tengo el nro.");
     
     struct digit * d, * copia;
     
-    digits_init_set_decimal_string___(&d, number_str );
-    free (number_str);
-    tiempo_transcurrido (start, end, "Ya tendo en lni.");
+    digits_init_set_decimal_string(&d, number_str );
+    tiempo_transcurrido (start, end, "init_set_decimal_string");
+
+    digits_print_hex(d);
     
+    digits_init_set_decimal_string___(&d, number_str );
+    tiempo_transcurrido (start, end, "init_set_decimal_string___");
+    digits_print_hex(d);
+    free (number_str);
+
     /*
     **
-    **    Copio:
+    **    
     **
     */
 
@@ -66,7 +72,7 @@ int main(int argc, char ** argv)
     
     char * s, *t; 
     s = digits_get_str_hex (d);
-
+    //puts(s);
 
     tiempo_transcurrido(start, end, "Ya tengo un hex.");
 

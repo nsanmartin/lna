@@ -13,9 +13,7 @@ void digits_set_add_ui (struct digit * ds, T const y)
     sumador (ds -> num, y, &suma, &carry);
     ds -> num = suma;
     if (carry) {
-        puts("set add carry");
         if (ds -> next) {
-            puts("se incr tail");
             digits_incr (ds -> next);
         } else {
             puts ("se agranda list");

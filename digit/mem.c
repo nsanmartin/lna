@@ -60,22 +60,29 @@ int digits_init_set_decimal_string (struct digit ** d, char const * s)
 
 int digits_init_set_decimal_string___ (struct digit ** d, char const * s)
 {
-  puts("___");
-  
   struct digit * p = digits_new(0);
-  *d = p;
-  char numstr [21];
+
+  char numstr [3];
   unsigned long long num;
+  int i = 0;
+  int cacho = 3;
+
   while (*s != '\0') {
-    for (int i = 0; i < 21; i++) {
-      
-      numstr [i] = s [i];
-    }
-    s += 21;
-    num = strtoull(numstr, 0x0, 10);
-    digits_set_add_ui (p, num );
-    
+      if (i > cacho)  {
+	  num = strtoull(numstr, 0x0, 10);
+	  digits_set_mul_ui (p, (T) 1000 );
+	  digits_set_add_ui (p, num);
+	  i = 0;
+      }
+      numstr [i] = *s;
+      i++;s++;
   }
+  if (i != cacho) {
+      //numstr[cacho] = '\0';
+      num = strtoull(numstr, 0x0, 10);
+      digits_set_add_ui (p, num);
+  }
+  *d = p;
 }
 
 
