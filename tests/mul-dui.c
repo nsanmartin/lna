@@ -5,23 +5,28 @@
 #include <errno.h>
 #include <gmp.h>
 #include <aux-tests.h>
+#include <time.h>
 
+int verbose = 1;
 int main(int argc, char ** argv)
 {
-    if (argc != 3)
+  srand (time (0));
+    if (argc != 2)
     {
-        puts("Usage: prog NUMBER:lni NUMBER:ui\n");
+        puts("Usage: prog NUMBER (max digits dec)\n");
         return 0;
     }
 
     
-    T  x;
+    T  x, ndigs;
     errno = 0;
     char * tail;
-    x = strtoul (argv[2], &tail, 10);
-    if (errno) { puts("segundo numero demasiado grande"); return 0; }
+    ndigs = strtoul (argv[1], &tail, 10);
+    if (errno) { puts("numero demasiado grande"); return 0; }
 
-    char const * fst  = strdup(argv[1]);
+    T size = rand() % ndigs;
+    char const * fst  = rnd_dec_str(size);
+
     struct digit * d, * lna_mul;
     digits_init_set_decimal_string(&d, fst );
     
@@ -33,7 +38,11 @@ int main(int argc, char ** argv)
     **    mul:
     **
     */
-
+    x = rand();
+    if (verbose) {
+      printf ("x: %llu\t", x);
+      printf ("d size: %llu\n", size);
+    }
     digits_set_mul_ui (d, x);
     mpz_mul_ui (z, z, x);
     

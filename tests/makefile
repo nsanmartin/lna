@@ -5,8 +5,8 @@ OBJECTS = ../digit/add.o ../digit/decr.o ../digit/incr.o \
 CFLAGS = -g -lgmp -lm -I../include
 
 add : $(OBJECTS)
-	gcc  $(OBJECTS) -I. -I../include add-dd.c aux-tests.c -o build/add \
-	-lgmp -lm
+	gcc  $(OBJECTS) -I. -I../include add-dd.c aux-tests.c \
+	-o build/add -lgmp -lm
 
 addrand : $(OBJECTS)
 	gcc  $(OBJECTS) -I. -I../include addrand.c aux-tests.c \
@@ -20,6 +20,10 @@ drnd : $(OBJECTS)
 addset : $(OBJECTS)
 	gcc  $(OBJECTS) -I. -I../include add-setdd.c aux-tests.c \
 	-o build/addset -lgmp -lm
+
+addsetrand : $(OBJECTS)
+	gcc  $(OBJECTS) -I. -I../include add-setddrand.c aux-tests.c \
+	-o build/addsetrand -lgmp -lm
 
 addTT-cmp : $(OBJECTS) 
 	gcc  $(OBJECTS) -I. -I../include add-TT-cmp.c aux-tests.c \
@@ -35,12 +39,17 @@ muldui : $(OBJECTS)
 
 
 mul : $(OBJECTS)
-	gcc -g $(OBJECTS) -I. -I../include aux-tests.c mul-dd.c -o build/mul \
-	-lgmp -lm
+	gcc -g $(OBJECTS) -I. -I../include aux-tests.c mul-dd.c \
+	-o build/mul -lgmp -lm
+
+
+mulrand : $(OBJECTS)
+	gcc -g $(OBJECTS) -I. -I../include aux-tests.c mulrand.c \
+	-o build/mulrand -lgmp -lm
 
 copy : $(OBJECTS)
-	gcc $(OBJECTS) -I. -I../include aux-tests.c copy.c -o build/copy \
-	-lgmp -lm
+	gcc $(OBJECTS) -I. -I../include aux-tests.c copy.c \
+	-o build/copy -lgmp -lm
 
 
 copyrand : $(OBJECTS)
