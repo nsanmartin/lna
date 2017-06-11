@@ -59,6 +59,8 @@ struct digit * digits_mul (struct digit const * x, struct digit const * y)
 {
     struct digit * r = digits_new(0);
     struct digit ** res = &r;
+    if ( iszero (x) ||  iszero (y) )
+        return r;
     struct digit * tmp;
     while ( x ) {
         // set tmp = copy(y)
@@ -74,8 +76,7 @@ struct digit * digits_mul (struct digit const * x, struct digit const * y)
 	if ( x -> next == 0x0) 
 	    break;
         if ( r -> next == 0x0 ) {
-	    r -> next = digits_new(0);
-	    r -> next -> prev = r ;
+            digits_new_next(r, 0);
 	}
         r = r -> next;
         x = x -> next;

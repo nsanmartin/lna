@@ -3,7 +3,7 @@
 
 char * digits_get_str_hex (struct digit * d)
 {
-    T len = 0;
+    T len = 1;
     while (d -> next) {
         d = d -> next;
         len++;

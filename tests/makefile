@@ -1,6 +1,6 @@
 OBJECTS = ../digit/add.o ../digit/decr.o ../digit/incr.o \
 	../digit/mem.o ../digit/mul.o ../digit/pow.o ../digit/print.o \
-	../digit/string.o
+	../digit/string.o ../digit/cmp-funs.o
 
 CFLAGS = -g -lgmp -lm -I../include
 
@@ -41,6 +41,11 @@ muldui : $(OBJECTS)
 mul : $(OBJECTS)
 	gcc -g $(OBJECTS) -I. -I../include aux-tests.c mul-dd.c \
 	-o build/mul -lgmp -lm
+
+
+mulfile : $(OBJECTS)
+	gcc -g $(OBJECTS) -I. -I../include aux-tests.c mul-file.c \
+	-o build/mulfile -lgmp -lm
 
 
 mulrand : $(OBJECTS)

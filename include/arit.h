@@ -18,6 +18,8 @@ void multiplicador (const T x, const T y, T * lbits, T * rbits);
 
 void digits_set_lshift_digits_ui (struct digit * d, T n);
 
+
+int iszero(struct digit const * d);
 //void digit_set_add (struct digit * x, struct digit const  * y);
 
 /* void digit_set_add (digit n, digit x); */

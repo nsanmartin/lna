@@ -20,3 +20,4 @@ void gmp_from_arr (mpz_t z, T * arr, T len);
 
 char * rnd_dec_str (unsigned n_digits);
 struct digit * digits_rnd (FILE * urand, T size);
+char * filetostr (char const * fname);
