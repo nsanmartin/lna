@@ -11,7 +11,7 @@ int verbose = 1;
 
 int main(int argc, char ** argv)
 {
-  puts("empiezo");
+  //  puts("empiezo");
     srand (time (0));
     if (argc != 2) {
         puts("Usage: prog NUMBER (max digits)\n");return 0;

@@ -1,9 +1,10 @@
 #include <digit.h>
 #include <stdio.h>
-
+#include <assert.h>
 char * digits_get_str_hex (struct digit * d)
 {
-    T len = 1;
+    assert(d);
+    T len = 0;
     while (d -> next) {
         d = d -> next;
         len++;
