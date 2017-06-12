@@ -58,7 +58,7 @@ void digits_set_mul_ui (struct digit * ds, T const x)
 struct digit * digits_mul (struct digit const * x, struct digit const * y)
 {
     struct digit * r = digits_new(0);
-    struct digit ** res = &r;
+    struct digit * res = r;
     if ( iszero (x) ||  iszero (y) )
         return r;
     struct digit * tmp;
@@ -84,5 +84,5 @@ struct digit * digits_mul (struct digit const * x, struct digit const * y)
     //    printf ("veces: %u res (post): ", veces);
     //digits_print_hex (*res);
 
-    return *res;
+    return res;
 }
