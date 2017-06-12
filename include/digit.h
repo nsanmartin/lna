@@ -15,7 +15,7 @@ struct digit {
 
 
 void digits_new_next (struct digit * prev, T num);
-void digits_new_next (struct digit * prev, T num);
+//void digits_new_next (struct digit * prev, T num);
 
 
 void digits_init_array (struct digit ** d, T const * a, unsigned len);

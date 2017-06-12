@@ -7,13 +7,12 @@
 #include <aux-tests.h>
 #include <time.h>
 
-//#define VERBOSE
+#define VERBOSE
 #ifdef VERBOSE
 #define tiempo_transcurrido(MSG)	\
     do { \
-    /* Do the work. */ \
     end = clock(); \
-    printf (MSG"\t%f\n", ((double) (end - start)) / CLOCKS_PER_SEC); \
+    fprintf (stderr,MSG"\t%f\n", ((double) (end - start)) / CLOCKS_PER_SEC); \
     start = end; \
     } while (0);
 #else
@@ -37,10 +36,14 @@ int main(int argc, char ** argv)
 #ifdef VERBOSE
     printf("digitos: %llu\n", ndigits);
 #endif
-
+    tiempo_transcurrido ("empiezo:");
     struct digit * d;
     FILE * urand = fopen("/dev/urandom", "r");
     d = digits_rnd (urand, ndigits);
-    digits_print_hex(d);
     fclose(urand);
+    tiempo_transcurrido ("tengo el nro");
+    digits_print_hex(d);
+    tiempo_transcurrido("falta borrar");
+    digits_clear(&d);
+    tiempo_transcurrido("fin");
 }

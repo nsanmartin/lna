@@ -52,13 +52,13 @@ void digits_set_mul_ui (struct digit * ds, T const x)
         prev -> next -> prev = prev;
     }
 }
-#define DEB(str, d) \
-    printf((str)); digits_print_hex ((d));
-#include <print.h>
+
 struct digit * digits_mul (struct digit const * x, struct digit const * y)
 {
     struct digit * r = digits_new(0);
-    struct digit ** res = &r;
+    struct digit * res = r;
+    if ( iszero (x) ||  iszero (y) )
+        return r;
     struct digit * tmp;
     while ( x ) {
         // set tmp = copy(y)
@@ -74,14 +74,10 @@ struct digit * digits_mul (struct digit const * x, struct digit const * y)
 	if ( x -> next == 0x0) 
 	    break;
         if ( r -> next == 0x0 ) {
-	    r -> next = digits_new(0);
-	    r -> next -> prev = r ;
+            digits_new_next(r, 0);
 	}
         r = r -> next;
         x = x -> next;
     }
-    //    printf ("veces: %u res (post): ", veces);
-    //digits_print_hex (*res);
-
-    return *res;
+    return res;
 }

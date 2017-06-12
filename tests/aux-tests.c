@@ -91,3 +91,28 @@ struct digit * digits_rnd (FILE * urand, T size)
     
     return res;
 }
+
+char * filetostr (char const * fname) {
+
+    char *buffer = 0x0;
+    size_t size = 0;
+
+    FILE *fp = fopen(fname, "r");
+
+    /* Get the buffer size */
+    fseek(fp, 0, SEEK_END); /* Go to end of file */
+    size = ftell(fp); /* How many bytes did we pass ? */
+    /* Set position of stream to the beginning */
+    rewind(fp);
+
+    /* Allocate the buffer (no need to initialize it with calloc) */
+    buffer = malloc((size + 1) * sizeof(*buffer));
+
+    /* Read the file into the buffer */
+    fread(buffer, size, 1, fp);
+/* Read 1 chunk of size bytes from fp into buffer */
+
+    /* NULL-terminate the buffer */
+    buffer[size] = '\0';
+    return buffer;
+}

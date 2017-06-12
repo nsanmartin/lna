@@ -11,7 +11,6 @@
 #ifdef VERBOSE
 #define tiempo_transcurrido(DESDE, HASTA, MSG)	\
     do { \
-    /* Do the work. */ \
     HASTA = clock(); \
     printf (MSG"\t%f\n", ((double) (HASTA - DESDE)) / CLOCKS_PER_SEC); \
     DESDE = HASTA; \
@@ -19,7 +18,6 @@
 #else
 #define tiempo_transcurrido(DESDE, HASTA, MSG)	;
 #endif
-
 
 
 int main(int argc, char ** argv)
@@ -40,11 +38,10 @@ int main(int argc, char ** argv)
     printf("digitos: %llu\n", ndigits);
     #endif
     
-    FILE * urand = fopen("/dev/urandom", "r");
+    // FILE * urand = fopen("/dev/urandom", "r");
     unsigned char c;
     char * number_str = rnd_dec_str (ndigits);
 
-    /* Do the work. */
     tiempo_transcurrido (start, end, "Ya tengo el nro.");
     
     struct digit * d, * copia;
@@ -65,16 +62,12 @@ int main(int argc, char ** argv)
     
     char * s, *t; 
     s = digits_get_str_hex (d);
-
-
     tiempo_transcurrido(start, end, "Ya tengo un hex.");
-
-
-    
     t = digits_get_str_hex (copia);
-
     tiempo_transcurrido(start, end, "Ya tengo el otro hex.");
 
+    digits_clear(&d);
+    digits_clear(&copia);
     int comparacion =  strcmp(s,t) != 0;
 
     tiempo_transcurrido(start, end, "Ya compare los strings");
@@ -84,7 +77,8 @@ int main(int argc, char ** argv)
       exit(1);
     } else
       puts("ok");
-    
+    free (s);
+    free(t);
 
 }
 
