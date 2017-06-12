@@ -52,9 +52,7 @@ void digits_set_mul_ui (struct digit * ds, T const x)
         prev -> next -> prev = prev;
     }
 }
-#define DEB(str, d) \
-    printf((str)); digits_print_hex ((d));
-#include <print.h>
+
 struct digit * digits_mul (struct digit const * x, struct digit const * y)
 {
     struct digit * r = digits_new(0);
@@ -81,8 +79,5 @@ struct digit * digits_mul (struct digit const * x, struct digit const * y)
         r = r -> next;
         x = x -> next;
     }
-    //    printf ("veces: %u res (post): ", veces);
-    //digits_print_hex (*res);
-
     return res;
 }
