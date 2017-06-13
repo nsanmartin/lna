@@ -1,6 +1,6 @@
 OBJECTS = ../digit/add.o ../digit/decr.o ../digit/incr.o \
 	../digit/mem.o ../digit/mul.o ../digit/pow.o ../digit/print.o \
-	../digit/string.o ../digit/cmp-funs.o
+	../digit/string.o ../digit/cmp-funs.o ../digit/div.c
 
 CFLAGS = -g -lgmp -lm -I../include
 
@@ -64,6 +64,16 @@ copyrand : $(OBJECTS)
 strtodec : $(OBJECTS)
 	gcc $(OBJECTS) -I. -I../include aux-tests.c strtodec.c
 	\ -o build/strtodec -lgmp -lm
+
+
+divdui : $(OBJECTS)
+	gcc -g $(OBJECTS) -I. -I../include aux-tests.c div-dui.c  \
+	-o build/divdui -lgmp -lm
+
+
+divduipt : $(OBJECTS)
+	gcc -g $(OBJECTS) -I. -I../include aux-tests.c div-dui-input.c  \
+	-o build/divduipt -lgmp -lm
 
 clean :
 	rm $(OBJECTS)
