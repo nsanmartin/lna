@@ -15,6 +15,7 @@ void digits_set_mul_ui (struct digit * ds, T const x);
 void digits_set_add_ui (struct digit * ds, T const y);
 void multiplicador (const T x, const T y, T * lbits, T * rbits);
 
+void digits_set_div_ui (struct digit * ds, T divisor);
 
 void digits_set_lshift_digits_ui (struct digit * d, T n);
 

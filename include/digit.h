@@ -36,6 +36,8 @@ void digits_loop_bwd (struct digit * last, void (*f)(struct digit *));
 /*                          void * res); */
 
 void digits_clear(struct digit **  lista );
+void free_digit (struct digit * d);
+
 char * digits_get_str_hex (struct digit * d);
 
 T digits_len (struct digit * n);
