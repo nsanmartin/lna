@@ -19,6 +19,24 @@ void gmp_lna_cmp (mpz_t mpz, struct digit * ds)
     }
 }
 
+void gmp_lna_cmp_ask (mpz_t mpz, struct digit * ds, int ok)
+{
+    char * s, * t;
+    
+    t = mpz_get_str (NULL, 16, mpz);
+    s = digits_get_str_hex (ds);
+    
+    if ( strcmp ( s, t )  == 0) {
+      if (ok)
+	printf ("ok\n");
+    }
+    else {
+      fprintf (stderr, "error en test\n");
+      fprintf(stderr, "lna: %s\n", s);
+      fprintf(stderr, "gmp: %s\n", t);
+      exit(1);
+    }
+}
 
     
 void gmp_M (mpz_t z)

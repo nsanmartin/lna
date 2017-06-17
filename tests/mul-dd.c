@@ -43,5 +43,7 @@ int main(int argc, char ** argv)
     lna_mul = digits_mul (d, e);
     mpz_mul (mpz_mul_res, w,z);
 
-    gmp_lna_cmp (mpz_mul_res, lna_mul);
+    gmp_lna_cmp_ask (mpz_mul_res, lna_mul, 0);
+    digits_print_hex(lna_mul);
+
 }
