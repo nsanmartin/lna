@@ -53,8 +53,8 @@ char * rnd_dec_str (unsigned n_digits) {
     FILE * urand = fopen("/dev/urandom", "r");
     unsigned char c;
     char * number_str = malloc (sizeof (char) * n_digits + 1);
-    
-    for (int i = 0; i < n_digits; i++) {
+    int i;
+    for (i = 0; i < n_digits; i++) {
 	c = getc (urand) % 10;
 	number_str [i] = '0' + c ;
     }
@@ -73,9 +73,10 @@ struct digit * digits_rnd (FILE * urand, T size)
     T x;
     char * p;
     size_t bytes = sizeof(T);
-    for (int i = 0; i < size; i++) {
+    int i, j;
+    for (i = 0; i < size; i++) {
 	p = (char *) &x;
-       for (int j = 0; j < bytes; j++) {
+       for (j = 0; j < bytes; j++) {
 	   c = getc (urand);
 	   p[j] = c;
        }
