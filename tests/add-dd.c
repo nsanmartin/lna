@@ -46,5 +46,6 @@ int main(int argc, char ** argv)
     /* mpz_sub (mpz_diff, mpz_sum, cpy_lna); */
     /* gmp_printf ("diff: %Zx\n", mpz_diff); */
 
-    gmp_lna_cmp (mpz_sum, lna_sum);
+    gmp_lna_cmp_ask (mpz_sum, lna_sum, 0);
+    digits_print_hex(lna_sum);
 }

@@ -19,6 +19,24 @@ void gmp_lna_cmp (mpz_t mpz, struct digit * ds)
     }
 }
 
+void gmp_lna_cmp_ask (mpz_t mpz, struct digit * ds, int ok)
+{
+    char * s, * t;
+    
+    t = mpz_get_str (NULL, 16, mpz);
+    s = digits_get_str_hex (ds);
+    
+    if ( strcmp ( s, t )  == 0) {
+      if (ok)
+	printf ("ok\n");
+    }
+    else {
+      fprintf (stderr, "error en test\n");
+      fprintf(stderr, "lna: %s\n", s);
+      fprintf(stderr, "gmp: %s\n", t);
+      exit(1);
+    }
+}
 
     
 void gmp_M (mpz_t z)
@@ -53,8 +71,8 @@ char * rnd_dec_str (unsigned n_digits) {
     FILE * urand = fopen("/dev/urandom", "r");
     unsigned char c;
     char * number_str = malloc (sizeof (char) * n_digits + 1);
-    
-    for (int i = 0; i < n_digits; i++) {
+    int i;
+    for (i = 0; i < n_digits; i++) {
 	c = getc (urand) % 10;
 	number_str [i] = '0' + c ;
     }
@@ -73,9 +91,10 @@ struct digit * digits_rnd (FILE * urand, T size)
     T x;
     char * p;
     size_t bytes = sizeof(T);
-    for (int i = 0; i < size; i++) {
+    int i, j;
+    for (i = 0; i < size; i++) {
 	p = (char *) &x;
-       for (int j = 0; j < bytes; j++) {
+       for (j = 0; j < bytes; j++) {
 	   c = getc (urand);
 	   p[j] = c;
        }
