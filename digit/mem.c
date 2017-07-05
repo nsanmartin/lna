@@ -42,7 +42,7 @@ int digits_init_set_decimal_string (struct digit ** d, char const * s)
     if (*s < '0' || '9' < *s)
         return -1;
 
-    decimal_digit = ((T) *s - '0');
+    decimal_digit = ((T) *s - (T) '0');
     s++;
     newd -> num = decimal_digit;
     struct digit * dd, *tmp2, *suma;
@@ -58,49 +58,48 @@ int digits_init_set_decimal_string (struct digit ** d, char const * s)
     return *s == '\0' ? 0 : -1;
 }
 
-int digits_init_set_decimal_string___ (struct digit ** d, char const * s)
-{
-  struct digit * p = digits_new(0);
+/* int digits_init_set_decimal_string___ (struct digit ** d, char const * s) */
+/* { */
+/*   struct digit * p = digits_new(0); */
 
-  char numstr [3];
-  unsigned long long num;
-  int i = 0;
-  int cacho = 3;
+/*   char numstr [3]; */
+/*   T num; */
+/*   int i = 0; */
+/*   int cacho = 3; */
 
-  while (*s != '\0') {
-      if (i > cacho)  {
-	  num = strtoull(numstr, 0x0, 10);
-	  digits_set_mul_ui (p, (T) 1000 );
-	  digits_set_add_ui (p, num);
-	  i = 0;
-      }
-      numstr [i] = *s;
-      i++;s++;
-  }
-  if (i != cacho) {
-      //numstr[cacho] = '\0';
-      num = strtoull(numstr, 0x0, 10);
-      digits_set_add_ui (p, num);
-  }
-  *d = p;
-}
+/*   while (*s != '\0') { */
+/*       if (i > cacho)  { */
+/* 	  num = strtoull(numstr, 0x0, 10); */
+/* 	  digits_set_mul_ui (p, (T) 1000 ); */
+/* 	  digits_set_add_ui (p, num); */
+/* 	  i = 0; */
+/*       } */
+/*       numstr [i] = *s; */
+/*       i++;s++; */
+/*   } */
+/*   if (i != cacho) { */
+/*       num = strtoull(numstr, 0x0, 10); */
+/*       digits_set_add_ui (p, num); */
+/*   } */
+/*   *d = p; */
+/* } */
 
 
-void digits_init_array (struct digit ** d, T const * a, unsigned len)
-{
-    if (!len) {
-        fprintf (stderr, "digits_init_array: len == 0");
-        exit(1);
-    }
-    *d = digits_new (a [0]);
-    unsigned i = 1;
-    while (i < len) {
-        (*d) -> prev = digits_new ( a [i]);
-        (*d) -> prev -> next = *d;
-        *d = (*d) -> prev;
-        i++;
-    }
-}
+/* void digits_init_array (struct digit ** d, T const * a, unsigned len) */
+/* { */
+/*     if (!len) { */
+/*         fprintf (stderr, "digits_init_array: len == 0"); */
+/*         exit(1); */
+/*     } */
+/*     *d = digits_new (a [0]); */
+/*     unsigned i = 1; */
+/*     while (i < len) { */
+/*         (*d) -> prev = digits_new ( a [i]); */
+/*         (*d) -> prev -> next = *d; */
+/*         *d = (*d) -> prev; */
+/*         i++; */
+/*     } */
+/* } */
 
 struct digit * digits_new_array (T num[], unsigned l)
 {
@@ -118,22 +117,6 @@ struct digit * digits_new_array (T num[], unsigned l)
     return next_tmp;
 }
 
-
-/* struct digit * digits_new_array (T num[], unsigned l) */
-/* { */
-/*     struct digit * res; struct digit * next_tmp, ** p = &res; */
-/*     unsigned i = 0; */
-    
-/*     while ( i < l ) { */
-/* 	*p = digits_new ( num[i] ); */
-/*         if (i > 0) */
-/*             (*p) -> next = next_tmp; */
-/*         next_tmp = *p; */
-/* 	p = &((*p) -> prev); */
-/* 	i++; */
-/*     } */
-/*     return next_tmp; */
-/* } */
 
 struct digit * digits_new_list_arr_invertido (T num[], unsigned l)
 {

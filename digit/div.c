@@ -33,11 +33,7 @@ void digits_set_div_ui (struct digit * ds, T divisor)
 {
     assert (divisor && ds -> prev == 0x0);
     if (ds -> next == 0x0) {
-	printf("****** len 1. num: %u\n", ds -> num);
 	ds -> num /= divisor;
-	printf("num div: %u****** \n", ds -> num);
-	assert (ds ->prev == 0x0);
-	
 	return;
     }
 
