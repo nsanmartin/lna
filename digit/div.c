@@ -18,12 +18,12 @@ void div_2wd_num (T left, T right, T d, T *quot, T *rem)
     T Q, R;
     Q = R = 0;
     T i;
-    for (i = 2*BITS_OF_T - 1; i >= 0 ; i--) {
+    for (i = 2*BITS_OF_T; i > 0 ; i--) {
         R <<= 1;
-        set_bit0_with_ith_2wd(R, left, right, i);
+        set_bit0_with_ith_2wd(R, left, right, i -1);
         if (R >= d) {
             R -= d;
-            set_ith_bit_eq1(Q, i);
+            set_ith_bit_eq1(Q, i- 1);
         }
     }
     *quot = Q; *rem = R;
@@ -41,24 +41,21 @@ void digits_set_div_ui (struct digit * ds, T divisor)
 	return;
     }
 
-    T resto, num, len = 0;
+    T resto, num, len = 1;
     while (ds -> next) { ds = ds -> next; len++; }
-    printf("len: %u\n", len);
+
     if (ds -> num < divisor) {
-	puts("menor$\n");
         resto = ds -> num;
         ds = ds -> prev;
         free_digit (ds -> next);
         ds -> next = 0x0;
-
     } else {
-	puts("mayor$\n");
-
 	resto = ds -> num % divisor;
 	ds -> num /= divisor;
 	ds = ds -> prev;
     }
 
+    unsigned c = 0;
     while (ds) {
 	num = ds -> num;
 	div_2wd_num (resto, ds -> num, divisor, &num, &resto);
