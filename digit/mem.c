@@ -49,13 +49,13 @@ int digits_init_set_decimal_string (struct digit ** d, char const * s)
     while(('0' <= *s && *s <= '9') || *s == ' ' ) {
         while (isspace (*s))
             s++;
-
+	
         digits_set_mul_ui ( newd, (T) 10 );
         digits_set_add_ui ( newd, ((T) *s - '0'));
         s++;
     }
-    return *s == '\0' ?
-        0 : -1;
+    
+    return *s == '\0' ? 0 : -1;
 }
 
 int digits_init_set_decimal_string___ (struct digit ** d, char const * s)
