@@ -70,3 +70,7 @@ void digits_set_div_ui (struct digit * ds, T divisor)
         ds = ds -> next;
     }
 }
+
+#define lshift_1bit (left, right) \
+    (left) = (left) << 1 & (( ~(T)0 << 1 ) | right >> BITS_OF_T - 1)
+
