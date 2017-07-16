@@ -3,72 +3,62 @@
 #include <assert.h>
 #include <digit.h>
 
-#define SUM_OVERFLOW(x,y) \
-    (x) || ~(T)0 - ((x)-1)  < (y) 
 
-T dos_ui_div (T r, T g, T wd_div, T wd_mod, T v)
+#define set_bit0_with_ith_2wd(R, Nl, Nr, i)                              \
+    do {                                                                \
+        T *P = i < BITS_OF_T ? &Nr : &Nl;                                 \
+        (R) = (R) & (~(T)0 << 1) | (((*P) >> (i % BITS_OF_T )) & 1);   \
+    } while (0)                                                         \
+
+#define set_ith_bit_eq1(Q,i)						\
+    (Q) = ((Q) & ~((T)1 << i)) | ((T)1<<i)                              \
+
+void div_2wd_num (T left, T right, T d, T *quot, T *rem)
 {
-    /*
-     * r:      resto del paso anterior
-     * g:      digito
-     * wd_div: 2^k / v, donde k esel nro de bits en T
-     * wd_mod: 2^k % v
-     * v:      divisor
-     */
-    assert (!MUL_OVERFLOW (r, wd_div));
-    assert (!MUL_OVERFLOW (r, wd_mod));
-    assert (!SUM_OVERFLOW (r * wd_div , g/v));
-    assert (!SUM_OVERFLOW (r * wd_mod , g % v));
-    assert (!SUM_OVERFLOW (r * wd_div,  g/v));
-    assert (!SUM_OVERFLOW (r * wd_div +g/v , (r * wd_mod + g % v) / v));
-
-    return r * wd_div + g/v + (r * wd_mod + g % v) / v;
-}
-
-T dos_ui_mod (T r, T g, T wd_mod, T v)
-{
-    assert (!MUL_OVERFLOW((r % v), wd_mod));
-    assert (!SUM_OVERFLOW( (r % v) * wd_mod , g % v));
-    
-    return ((r % v) * wd_mod + g % v) % v;
+    T Q, R;
+    Q = R = 0;
+    T i;
+    for (i = 2*BITS_OF_T; i > 0 ; i--) {
+        R <<= 1;
+        set_bit0_with_ith_2wd(R, left, right, i -1);
+        if (R >= d) {
+            R -= d;
+            set_ith_bit_eq1(Q, i- 1);
+        }
+    }
+    *quot = Q; *rem = R;
 }
 
 void digits_set_div_ui (struct digit * ds, T divisor)
 {
-    assert (divisor);
+    assert (divisor && ds -> prev == 0x0);
     if (ds -> next == 0x0) {
-        ds -> num /= divisor;
-        return;
+	ds -> num /= divisor;
+	return;
     }
-    unsigned len = 0;
-    T wd_div = divisor > ((T)1 << (BITS_OF_T - 1))
-        ? 1
-        : (~0 - (divisor - 1)) / divisor + 1;
-    
-    printf("wd_div: %lld\n", wd_div);
-    T wd_mod = (~(T)0 % divisor + 1) % divisor;
-    printf("wd_mod: %lld\n", wd_mod);
 
-    while (ds -> next) {
-        ds = ds -> next;
-        len++;
-    }
-    printf("len: %d\n", len);
-    T resto = 0;
-    
+    T resto, num, len = 1;
+    while (ds -> next) { ds = ds -> next; len++; }
+
     if (ds -> num < divisor) {
         resto = ds -> num;
         ds = ds -> prev;
         free_digit (ds -> next);
         ds -> next = 0x0;
+    } else {
+	resto = ds -> num % divisor;
+	ds -> num /= divisor;
+	ds = ds -> prev;
     }
+
+    unsigned c = 0;
     while (ds) {
-        T g = ds -> num;
-        ds -> num = dos_ui_div (resto, g, wd_div,wd_mod, divisor);
-        resto = dos_ui_mod (resto, g, wd_mod, divisor);
-        assert (resto < divisor);
-        ds = ds -> next;
+	num = ds -> num;
+	div_2wd_num (resto, ds -> num, divisor, &num, &resto);
+	ds -> num = num;
+	ds = ds -> prev;
     }
+    
 }
 
 #define lshift_1bit (left, right) \

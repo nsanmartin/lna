@@ -1,6 +1,6 @@
 OBJECTS = ../digit/add.o ../digit/decr.o ../digit/incr.o \
 	../digit/mem.o ../digit/mul.o ../digit/pow.o ../digit/print.o \
-	../digit/string.o ../digit/cmp-funs.o ../digit/div.c
+	../digit/div.o ../digit/string.o ../digit/cmp-funs.o  
 
 CFLAGS = -g -lgmp -lm -I../include
 
@@ -74,6 +74,11 @@ divdui : $(OBJECTS)
 divduipt : $(OBJECTS)
 	gcc -g $(OBJECTS) -I. -I../include aux-tests.c div-dui-input.c  \
 	-o build/divduipt -lgmp -lm
+
+
+divug : $(OBJECTS)
+	gcc -g $(OBJECTS) -I. -I../include aux-tests.c div-bug-test.c  \
+	-o build/divug -lgmp -lm
 
 clean :
 	rm $(OBJECTS)

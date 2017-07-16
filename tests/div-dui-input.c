@@ -18,7 +18,7 @@ int main(int argc, char ** argv)
     T  x;
     errno = 0;
     char * tail;
-    x = strtoul (argv[2], &tail, 10);
+    x = (T)strtoul (argv[2], &tail, 10);
     if (errno) { puts("segundo numero demasiado grande"); return 0; }
 
     char const * fst  = strdup(argv[1]);

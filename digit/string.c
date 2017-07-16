@@ -10,7 +10,7 @@ char * digits_get_str_hex (struct digit * d)
         len++;
     }
 
-    len *= 16;
+    len *= 2*BITS_OF_T;//16;
     T tmp = d -> num;
     while (tmp)  { len++; tmp /= 10; }
     char * res = malloc (sizeof(char) * len + 1);

@@ -7,7 +7,7 @@
 #define endl printf("\n");
 
 
-#if 0
+#if 1
 typedef unsigned char T;
 #define PRINT_NUM_DEC(num) printf( CHAR_PATTERN, (num))
 #define PRINT_NUM_HEX(num) printf( CHAR_HEX_PATTERN, (num))
