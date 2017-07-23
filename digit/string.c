@@ -14,7 +14,7 @@ char * digits_get_str_hex (struct digit * d)
     T tmp = d -> num;
     while (tmp)  { len++; tmp /= 10; }
     char * res = malloc (sizeof(char) * len + 1);
-    int i = sprintf (res, hexPATTERN, d -> num);
+    T i = sprintf (res, hexPATTERN, d -> num);
     d = d-> prev;
     while ( d ) {
         i += sprintf (res + i, hexPATTERNPADDING, d -> num);

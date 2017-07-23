@@ -13,7 +13,7 @@
 #define tiempo_transcurrido(MSG)                \
     do { \
     end = clock(); \
-    printf (MSG"\t%f\n", ((double) (end - start)) / CLOCKS_PER_SEC); \
+    printf (MSG"\t%fs\n", ((double) (end - start)) / CLOCKS_PER_SEC); \
     start = end; \
     } while (0);
 #else
@@ -80,3 +80,4 @@ int main(int argc, char ** argv)
 
     gmp_lna_cmp (mpz_sum, lna_sum);
 }
+
