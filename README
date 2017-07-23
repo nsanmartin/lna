@@ -8,7 +8,7 @@ fija.
 Para probar la suma el producto y la división, por ejemplo:
 
 make $OP
-./buils/$OP NUM NUM
+./build/$OP NUM NUM
 
 donde $OP es add, mul o divdui.
 
