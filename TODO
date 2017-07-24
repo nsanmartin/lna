@@ -1,25 +1,21 @@
 # -*- mode:org -*-
 
-* todo
-** cambiar _T a _ui
+TODO
 
-** rehacer lnn_t (large number: natural) para que en vez de :
+Implementar la división para todo par de números naturales
+arbitrariamente grandes (Cf. el libro de Knuth).
 
-struct lnn_t {
-    T num;
-    lnn_t * next;
-}
+Implementar la operación que convierta una representación de un
+número en una string hexadecimal, en una decimal.
 
-tengamos algo así:
+Implementar el tipo lni_t (enteros) que permita realizar dichas
+operaciones con números enteros. Esto puede hacerse mediante un tipo
+que contenga un natural, su signo, y su número de dígitos (esto
+para hacer más rápidas algunas operaciones, como por ejemplo algunas
+comparaciones).
 
-struct lnn_t {
-    T len;
-    struct nodo {
-        T num;
-        struct nodo * sgt;
-    } * primero;
-}
-
-O algo parecido. 
-** implementar lni_t (large number: integer)
-** implementar lnf_t (large number: float)
+Implementar una calculadora. Podría hacerse con una pila de números,
+que des-apile cada vez que se realice una operación. También podría
+incluirse la posibilidad de programar funciones que no se limiten
+a las operaciones básicas mencionadas, sino que consistan en la aplicación
+sucesiva de operaciones básicas.
