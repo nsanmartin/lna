@@ -27,7 +27,7 @@ int main(int argc, char ** argv)
         puts("Usage: prog NUMBER (max of digits)\n");return 0;
     }
     clock_t start, end;
-    double cpu_time_used;
+
     start = clock();
 
     errno = 0;
@@ -42,9 +42,9 @@ int main(int argc, char ** argv)
     char const * fst  = rnd_dec_str(ndigits);
     char const * snd  = rnd_dec_str(ndigits);
     tiempo_transcurrido("tengo los nros");
-    char *s, *t;
+
     struct digit * d, * e, * lna_sum;
-    mpz_t w, z, mpz_sum, mpz_diff, cpy_lna;
+    mpz_t w, z, mpz_sum, mpz_diff;
     /* FILE * urand =  fopen ("/dev/urand", "r"); */
 
     /* d = digits_rnd (urand, ndigits); */

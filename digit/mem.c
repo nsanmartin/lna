@@ -45,7 +45,7 @@ int digits_init_set_decimal_string (struct digit ** d, char const * s)
     decimal_digit = ((T) *s - (T) '0');
     s++;
     newd -> num = decimal_digit;
-    struct digit * dd, *tmp2, *suma;
+
     while(('0' <= *s && *s <= '9') || *s == ' ' ) {
         while (isspace (*s))
             s++;

@@ -16,9 +16,8 @@ int main(int argc, char ** argv)
     char const * fst  = strdup(argv[1]);
     char const * snd  = strdup(argv[2]);
     
-    char *s, *t;
     struct digit * d, * e, * lna_sum;
-    mpz_t w, z, mpz_sum, mpz_diff, cpy_lna;
+    mpz_t w, z, mpz_sum, mpz_diff;
     
     digits_init_set_decimal_string(&d, fst );
     digits_init_set_decimal_string(&e, snd );

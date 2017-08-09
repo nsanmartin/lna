@@ -86,7 +86,7 @@ struct digit * digits_rnd (FILE * urand, T size)
 {
     assert (size > 0);
     struct digit * res, * r;
-    r = res;
+
     unsigned char c; // 8 bits
     T x;
     char * p;

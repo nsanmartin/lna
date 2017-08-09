@@ -80,7 +80,7 @@ struct digit * digits_add (struct digit const * x, struct digit const *y)
     r = res;
     cin = cout;
     x = x -> next; y = y -> next;
-    int debug = 0;
+
     while (x && y) {
 	sumador (x -> num, y -> num, &suma, &cout );
         sumador (suma, cin, &suma, &cout2);

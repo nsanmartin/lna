@@ -7,7 +7,7 @@
 #define set_bit0_with_ith_2wd(R, Nl, Nr, i)                              \
     do {                                                                \
         T *P = i < BITS_OF_T ? &Nr : &Nl;                                 \
-        (R) = (R) & (~(T)0 << 1) | (((*P) >> (i % BITS_OF_T )) & 1);   \
+        (R) = ((R) & (~(T)0 << 1)) | (((*P) >> (i % BITS_OF_T )) & 1);  \
     } while (0)                                                         \
 
 #define set_ith_bit_eq1(Q,i)						\
@@ -20,10 +20,10 @@ void div_2wd_num (T left, T right, T d, T *quot, T *rem)
     T i;
     for (i = 2*BITS_OF_T; i > 0 ; i--) {
         R <<= 1;
-        set_bit0_with_ith_2wd(R, left, right, i -1);
+        set_bit0_with_ith_2wd(R, left, right, (i - 1));
         if (R >= d) {
             R -= d;
-            set_ith_bit_eq1(Q, i- 1);
+            set_ith_bit_eq1(Q, (i - 1));
         }
     }
     *quot = Q; *rem = R;
@@ -51,7 +51,6 @@ void digits_set_div_ui (struct digit * ds, T divisor)
 	ds = ds -> prev;
     }
 
-    unsigned c = 0;
     while (ds) {
 	num = ds -> num;
 	div_2wd_num (resto, ds -> num, divisor, &num, &resto);

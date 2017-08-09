@@ -2,15 +2,15 @@ OBJECTS = ../digit/add.o ../digit/decr.o ../digit/incr.o \
 	../digit/mem.o ../digit/mul.o ../digit/pow.o ../digit/print.o \
 	../digit/div.o ../digit/string.o ../digit/cmp-funs.o  
 
-CFLAGS = -g -lgmp -lm -I../include
+CFLAGS = -Wall -g -lgmp -lm -I. -I../include 
 
 add : $(OBJECTS)
-	gcc  $(OBJECTS) -I. -I../include add-dd.c aux-tests.c \
-	-o build/add -lgmp -lm
+	gcc  $(OBJECTS)  add-dd.c aux-tests.c \
+	-o build/add  $(CFLAGS)
 
 addrand : $(OBJECTS)
-	gcc  $(OBJECTS) -I. -I../include addrand.c aux-tests.c \
-	-o build/addrand -lgmp -lm
+	gcc $(OBJECTS)  addrand.c aux-tests.c \
+	-o build/addrand $(CFLAGS)
 
 
 drnd : $(OBJECTS)
@@ -49,7 +49,7 @@ mulfile : $(OBJECTS)
 
 
 mulrand : $(OBJECTS)
-	gcc -g $(OBJECTS) -I. -I../include aux-tests.c mulrand.c \
+	gcc $(CFLAGS) $(OBJECTS) -I. -I../include aux-tests.c mulrand.c \
 	-o build/mulrand -lgmp -lm
 
 copy : $(OBJECTS)
