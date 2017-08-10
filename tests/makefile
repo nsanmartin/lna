@@ -67,8 +67,8 @@ strtodec : $(OBJECTS)
 
 
 divdui : $(OBJECTS)
-	gcc -g $(OBJECTS) -I. -I../include aux-tests.c div-dui.c  \
-	-o build/divdui -lgmp -lm
+	gcc  $(OBJECTS)  aux-tests.c div-dui.c  \
+	-o build/divdui $(CFLAGS)
 
 
 divduipt : $(OBJECTS)

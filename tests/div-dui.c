@@ -27,22 +27,17 @@ int main(int argc, char ** argv)
     T size = rand() % ndigs;
     char const * fst  = rnd_dec_str(size);
 
-    struct digit * d, * lna_mul;
+    struct digit * d;
     digits_init_set_decimal_string(&d, fst );
     
-    mpz_t z, mpz_sum;
+    mpz_t z;
     mpz_init_set_str (z, fst, 10);
 
-    /*
-    **
-    **    mul:
-    **
-    */
     x = rand();
     if (verbose) {
-      printf ("x: %llu\t", x);
+      printf ("x (divisor): %llu\t", x);
       printf ("d size: %llu\n", size);
-      printf ("ds: %s\n", fst);
+      printf ("ds (dividendo): %s\n", fst);
     }
     digits_set_div_ui (d, x);
     mpz_div_ui (z, z, x);
