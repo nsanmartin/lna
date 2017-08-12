@@ -8,6 +8,14 @@ add : $(OBJECTS)
 	gcc  $(OBJECTS)  add-dd.c aux-tests.c \
 	-o build/add  $(CFLAGS)
 
+mul : $(OBJECTS)
+	gcc -g $(OBJECTS) -I. -I../include aux-tests.c mul-dd.c \
+	-o build/mul -lgmp -lm
+
+div : $(OBJECTS)
+	gcc -g $(OBJECTS) -I. -I../include aux-tests.c div-dd.c \
+	-o build/div -lgmp -lm
+
 addrand : $(OBJECTS)
 	gcc $(OBJECTS)  addrand.c aux-tests.c \
 	-o build/addrand $(CFLAGS)
@@ -38,9 +46,6 @@ muldui : $(OBJECTS)
 	-lgmp -lm
 
 
-mul : $(OBJECTS)
-	gcc -g $(OBJECTS) -I. -I../include aux-tests.c mul-dd.c \
-	-o build/mul -lgmp -lm
 
 
 mulfile : $(OBJECTS)
