@@ -72,13 +72,13 @@ T base_div_ui (T d)
 void digits_set_div (struct digit * u, struct digit * v)
 {
     fprintf (stderr, "digits_set_div no implementada\n");
-    /* T len_u, len_v; */
-    /* len_u = length(u); */
-    /* len_v = length(v); */
-    /* T d = 1; */
-    /* if (v -> num != ~(T)0) */
-    /*     d = base_div_ui (v -> num + 1); */
-    /* digits_set_mul_ui (u, d); */
-    /* digits_set_mul_ui (v, d); */
+    T len_u, len_v;
+    len_u = length(u);
+    len_v = length(v);
+    T d = 1;
+    if (v -> num != ~(T)0)
+        d = base_div_ui (v -> num + 1);
+    digits_set_mul_ui (u, d);
+    digits_set_mul_ui (v, d);
 }
 

@@ -21,7 +21,7 @@ int main(int argc, char ** argv)
     char const * snd  = strdup(argv[2]);
     
     char *s, *t;
-    struct digit * d, * e, * lna_mul;
+    struct digit * d, * e, * lna_div;
     mpz_t w, z, mpz_mul_res, mpz_diff, cpy_lna;
     
     digits_init_set_decimal_string(&d, fst );
@@ -40,10 +40,11 @@ int main(int argc, char ** argv)
     **
     */
 
-    lna_div = digits_div(d, e);
+    //lna_div =
+    digits_set_div(d, e);
     mpz_div (mpz_mul_res, w,z);
 
-    gmp_lna_cmp_ask (mpz_mul_res, lna_mul, 0);
-    digits_print_hex(lna_mul);
+    /* gmp_lna_cmp_ask (mpz_mul_res, lna_div, 0); */
+    /* digits_print_hex(lna_div); */
 
 }
