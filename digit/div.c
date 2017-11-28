@@ -31,32 +31,32 @@ void div_2wd_num (T left, T right, T d, T *quot, T *rem)
 
 void digits_set_div_ui (struct digit * ds, T divisor)
 {
-    assert (divisor && ds -> prev == 0x0);
-    if (ds -> next == 0x0) {
-	ds -> num /= divisor;
-	return;
-    }
+     assert (divisor && ds -> prev == 0x0);
+     if (ds -> next == 0x0) {
+          ds -> num /= divisor;
+          return;
+     }
 
-    T resto, num, len = 1;
-    while (ds -> next) { ds = ds -> next; len++; }
+     T resto, num, len = 1;
+     while (ds -> next) { ds = ds -> next; len++; }
 
-    if (ds -> num < divisor) {
-        resto = ds -> num;
-        ds = ds -> prev;
-        free_digit (ds -> next);
-        ds -> next = 0x0;
-    } else {
-	resto = ds -> num % divisor;
-	ds -> num /= divisor;
-	ds = ds -> prev;
-    }
+     if (ds -> num < divisor) {
+          resto = ds -> num;
+          ds = ds -> prev;
+          free_digit (ds -> next);
+          ds -> next = 0x0;
+     } else {
+          resto = ds -> num % divisor;
+          ds -> num /= divisor;
+          ds = ds -> prev;
+     }
 
-    while (ds) {
-	num = ds -> num;
-	div_2wd_num (resto, ds -> num, divisor, &num, &resto);
-	ds -> num = num;
-	ds = ds -> prev;
-    }
+     while (ds) {
+          num = ds -> num;
+          div_2wd_num (resto, ds -> num, divisor, &num, &resto);
+          ds -> num = num;
+          ds = ds -> prev;
+     }
     
 }
 

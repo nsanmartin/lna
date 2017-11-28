@@ -2,14 +2,14 @@ OBJECTS = ../digit/add.o ../digit/decr.o ../digit/incr.o \
 	../digit/mem.o ../digit/mul.o ../digit/pow.o ../digit/print.o \
 	../digit/div.o ../digit/string.o ../digit/cmp-funs.o  
 
-CFLAGS = -Wall -g -lgmp -lm -I. -I../include 
+CFLAGS = -O3 -Wall -g -lgmp -lm -I. -I../include 
 
 add : $(OBJECTS)
 	gcc  $(OBJECTS)  add-dd.c aux-tests.c \
-	-o build/add  $(CFLAGS)
+	-o build/$@  $(CFLAGS)
 
 mul : $(OBJECTS)
-	gcc -g $(OBJECTS) -I. -I../include aux-tests.c mul-dd.c \
+	gcc -O3 -g $(OBJECTS) -I. -I../include aux-tests.c mul-dd.c \
 	-o build/mul -lgmp -lm
 
 div : $(OBJECTS)
@@ -87,3 +87,4 @@ divug : $(OBJECTS)
 
 clean :
 	rm $(OBJECTS)
+	rm build/*

@@ -103,7 +103,9 @@ int digits_init_set_decimal_string (struct digit ** d, char const * s)
 
 struct digit * digits_new_array (T num[], unsigned l)
 {
-    struct digit * res; struct digit * next_tmp, ** p = &res;
+    struct digit * res;
+    struct digit * next_tmp = 0x0;
+    struct digit ** p = &res;
     unsigned i = 0;
     
     while ( i < l ) {
@@ -121,13 +123,13 @@ struct digit * digits_new_array (T num[], unsigned l)
 struct digit * digits_new_list_arr_invertido (T num[], unsigned l)
 {
     struct digit * res; struct digit ** p = &res;
-    struct digit * prev_tmp;
+    struct digit * prev_tmp = 0x0;
     unsigned i = 0;
     while ( i < l )
     {
 	*p = digits_new ( num[i] );
         if (i > 0)
-            (*p) -> prev = prev_tmp;
+             (*p) -> prev = prev_tmp;
         prev_tmp = *p;
 	p = &((*p) -> next);
 	i++;
@@ -138,12 +140,12 @@ struct digit * digits_new_list_arr_invertido (T num[], unsigned l)
 T digits_copy (struct digit ** dest, struct digit const * src)
 {
     T res = 0; unsigned first = 0;
-    struct digit * prev, * next;
+    struct digit * next, * prev = 0x0;
     while ( src ) {
         next = src -> next;
         * dest = digits_new ( src -> num );
         if ( first++ > 0 )
-            (* dest) -> prev = prev;
+             (* dest) -> prev = prev;
         prev = * dest;
         dest = &((* dest) -> next);
         src = next;
@@ -190,19 +192,19 @@ void digits_map_fwd (struct digit *head,
                          struct digit * (*f)(struct digit *),
                          void * res)
 {
-    struct digit * p =  head;
-    struct digit * q;
-    struct digit ** r =  (struct digit **) res;
-    struct digit * prev_tmp;
-    while ( p ) {
-	q = p -> next;
-	*r = f ( p );
-        if (p -> prev)
-            (*r) -> prev = prev_tmp;
-        prev_tmp = *r;
-	r = &((*r) -> next);
-	p = q;
-    }
+     struct digit * p =  head;
+     struct digit * q;
+     struct digit ** r =  (struct digit **) res;
+     struct digit * prev_tmp = 0x0;
+     while ( p ) {
+          q = p -> next;
+          *r = f ( p );
+          if (p -> prev)
+               (*r) -> prev = prev_tmp;
+          prev_tmp = *r;
+          r = &((*r) -> next);
+          p = q;
+     }
 }
 
 void free_digit (struct digit * d) { free ( d ); }

@@ -84,37 +84,37 @@ char * rnd_dec_str (unsigned n_digits) {
 
 struct digit * digits_rnd (FILE * urand, T size)
 {
-    assert (size > 0);
-    struct digit * res, * r;
+     assert (size > 0);
+     struct digit * res, * r;
 
-    unsigned char c; // 8 bits
-    T x;
-    char * p;
-    size_t bytes = sizeof(T);
-    int i, j;
-    for (i = 0; i < size; i++) {
-	p = (char *) &x;
-       for (j = 0; j < bytes; j++) {
-	   c = getc (urand);
-	   p[j] = c;
-       }
-       if (i == 0) {
-	   res = digits_new (x);
-	   r = res;
-       } else {
-	   digits_new_next (r, x);
-	   r = r -> next;
-       }
+     unsigned char c; // 8 bits
+     T x;
+     char * p;
+     size_t bytes = sizeof(T);
+     int i, j;
+     for (i = 0; i < size; i++) {
+          p = (char *) &x;
+          for (j = 0; j < bytes; j++) {
+               c = getc (urand);
+               p[j] = c;
+          }
+          if (i == 0) {
+               res = digits_new (x);
+               r = res;
+          } else {
+               digits_new_next (r, x);
+               r = r -> next;
+          }
        
-    }
+     }
     
-    return res;
+     return res;
 }
 
 char * filetostr (char const * fname) {
 
     char *buffer = 0x0;
-    size_t size = 0;
+    size_t readed, size = 0;
 
     FILE *fp = fopen(fname, "r");
 
@@ -128,7 +128,7 @@ char * filetostr (char const * fname) {
     buffer = malloc((size + 1) * sizeof(*buffer));
 
     /* Read the file into the buffer */
-    fread(buffer, size, 1, fp);
+    readed = fread(buffer, size, 1, fp);
 /* Read 1 chunk of size bytes from fp into buffer */
 
     /* NULL-terminate the buffer */
