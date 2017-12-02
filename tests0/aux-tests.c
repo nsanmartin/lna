@@ -86,7 +86,7 @@ struct digit * digits_rnd (FILE * urand, T size)
 {
      assert (size > 0);
      struct digit * res, * r;
-     r = res = 0x0;
+
      unsigned char c; // 8 bits
      T x;
      char * p;
@@ -129,7 +129,6 @@ char * filetostr (char const * fname) {
 
     /* Read the file into the buffer */
     readed = fread(buffer, size, 1, fp);
-    assert(readed);
 /* Read 1 chunk of size bytes from fp into buffer */
 
     /* NULL-terminate the buffer */
