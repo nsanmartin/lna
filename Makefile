@@ -6,6 +6,9 @@ OBJECTS = digit/add.o digit/decr.o digit/incr.o \
 CFLAGS = -O3 -Wall -g -lgmp -lm -I. -Iinclude -Itests
 
 
+install: add mul
+	cp build/add build/mul /usr/local/bin
+
 add : $(OBJECTS)
 	gcc arit/$@.c $(OBJECTS) -o build/$@ $(CFLAGS)
 
