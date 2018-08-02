@@ -1,17 +1,21 @@
 lna (large number arithmetic)
 
-El tipo struct digit representa los números naturales permitiendo
-las operaciones de suma y producto entre números arbitrariamente
-grandes y división de uno arbitrariamente grande por uno de precisión
-fija.
 
-Para probar la suma el producto y la división, por ejemplo:
+Las operaciones mul y add operan sobre numeros de cualquier tamaño
+y devuelven el resultado en hexadecimal.
 
-cd tests
-make $OP
-./build/$OP NUM NUM
+Para generar los ejecutables en ./build:
 
-donde $OP es add, mul o divdui y NUM es un número decimal.
-El valor devuelto está expresado en hexadecimal.
+$ make mul add
 
-ver TODO
+O para instalarlos en /usr/local/bin
+
+$ sudo make install
+
+
+Los test que están en el Makefile comparan con los resultados de la
+operación utilizando la librería GMP. Por eso, para compilarlos
+primero hay que instalar gmp.
+
+
+

@@ -10,10 +10,12 @@ install: add mul
 	cp build/add build/mul /usr/local/bin
 
 add : $(OBJECTS)
-	gcc arit/$@.c $(OBJECTS) -o build/$@ $(CFLAGS)
+	gcc -O3 -Wall -g  -lm -I. -Iinclude  arit/$@.c $(OBJECTS) \
+	-o build/$@ 
 
 mul : $(OBJECTS)
-	gcc arit/$@.c $(OBJECTS) -o build/$@ $(CFLAGS)
+	gcc -O3 -Wall -g  -lm -I. -Iinclude arit/$@.c $(OBJECTS) \
+	-o build/$@
 
 taddrand : $(OBJECTS)
 	gcc  tests/$@.c $(OBJECTS)  tests/aux-tests.c \
