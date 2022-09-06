@@ -17,5 +17,7 @@ Los test que están en el Makefile comparan con los resultados de la
 operación utilizando la librería GMP. Por eso, para compilarlos
 primero hay que instalar gmp.
 
-
+La implementación se basa en listas enlazadas (De hecho la idea era
+originalmente hacer algo con listas para probar). Para una (más rápida)
+usando vectors: https://github.com/nsanmartin/largeint
 
